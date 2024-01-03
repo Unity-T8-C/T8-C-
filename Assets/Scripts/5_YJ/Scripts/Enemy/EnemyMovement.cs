@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private EnemyController Controller;
+    private TopDownEnemyController Controller;
 
     private Vector2 movementDirection = Vector2.zero;
     private Rigidbody2D _rigidbody2D;
@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-        Controller = GetComponent<EnemyController>();
+        Controller = GetComponent<TopDownEnemyController>();
         _rigidbody2D = GetComponent<Rigidbody2D>();
         stats = GetComponent<EnemyStatsHandler>();
     }

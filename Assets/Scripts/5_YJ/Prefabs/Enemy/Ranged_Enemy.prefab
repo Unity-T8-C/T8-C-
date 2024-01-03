@@ -158,8 +158,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpriteRenderer: {fileID: 1102932142301136639}
-  followRange: 50
-  shootRange: 10
+  followRange: 100
+  shootRange: 100
 --- !u!114 &3823747331594337452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,7 +173,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileAttackPos: {fileID: 6606391851199284747}
-  targetPos: {fileID: 0}
 --- !u!1 &4564407898638125434
 GameObject:
   m_ObjectHideFlags: 0
