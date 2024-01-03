@@ -4,12 +4,10 @@ using UnityEngine;
 public class EnemyController : TopDownEnemyController
 {
     private GameManager gameManager;
-    protected GameObject player;
 
     [SerializeField] protected SpriteRenderer mainSpriteRenderer;
 
     protected Transform target { get; private set; }
-
 
     [SerializeField][Range(0.0f, 100.0f)] protected float followRange;
 
@@ -17,8 +15,6 @@ public class EnemyController : TopDownEnemyController
     { 
         gameManager = GameManager.Instance;
         target = gameManager.Player.transform;
-
-        player = GetComponent<GameObject>();
     }
 
     protected override void Awake()
