@@ -9,5 +9,4 @@ public class EnemySO : ScriptableObject
     public int atk;
     public float atkDelay;
     public LayerMask target;
-
 }
