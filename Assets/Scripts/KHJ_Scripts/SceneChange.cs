@@ -7,7 +7,7 @@ public class SceneChange : MonoBehaviour
 {
     public void GameScenesChange()
     {
-        SceneManager.LoadScene("KHJScene");
+        SceneManager.LoadScene("SampleScene");
     }
 
 }
