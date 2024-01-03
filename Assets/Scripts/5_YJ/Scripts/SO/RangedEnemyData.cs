@@ -7,6 +7,9 @@ public class RangedEnemyData : EnemySO
     public string projectileNameTag;
 
     public float duration;
+    public float spread;
+    public int numberofProjectilesPerShot;
+    public float multipleProjectilesAngel;
     public float atkSpeed;
     public float size;
 }

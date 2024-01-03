@@ -18,25 +18,29 @@ public class RangeEnemyController : EnemyController
             if(distance <= shootRange)
             {
                 int target = Stats.CurrentStats.enemySO.target;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 50f, (1 << LayerMask.NameToLayer("map")) | target);
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 30f, (1 << LayerMask.NameToLayer("map")) | target);
                 
                 if (hit.collider != null && target == (target | (1 << hit.collider.gameObject.layer)))
                 {
+                    CallLookEvent(direction);
                     CallMoveEvent(Vector2.zero);
                     IsAttacking = true;
                 }
                 else
                 {
+                    CallLookEvent(direction);
                     CallMoveEvent(direction);
                 }
             }
             else
             {
+                CallLookEvent(direction);
                 CallMoveEvent(direction);
             }
         }
         else
         {
+            CallLookEvent(direction);
             CallMoveEvent(direction);
         }
         Rotate(direction);

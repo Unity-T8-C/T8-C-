@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87554ae111443be41842bc51875c47b5, type: 3}
   m_Name: RangedEnemyData
   m_EditorClassIdentifier: 
-  hp: 0
-  atk: 0
-  moveSpeed: 0
-  atkDelay: 0
+  hp: 10
+  atk: 1
+  atkDelay: 3
   target:
     serializedVersion: 2
-    m_Bits: 0
-  projectileNameTag: 
-  duration: 0
-  atkSpeed: 0
-  size: 0
+    m_Bits: 1048576
+  projectileNameTag: Boll
+  duration: 1
+  spread: 1
+  numberofProjectilesPerShot: 1
+  multipleProjectilesAngel: 1
+  atkSpeed: 10
+  size: 2
