@@ -1494,6 +1494,7 @@ RectTransform:
   - {fileID: 1404030243}
   - {fileID: 2132640603}
   - {fileID: 1638685968}
+  - {fileID: 1552489883}
   - {fileID: 189888029}
   m_Father: {fileID: 786675994}
   m_RootOrder: -1
@@ -2038,7 +2039,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1199893404}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1552489888}
+        m_TargetAssemblyTypeName: PauseButton, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1240317725
 GameObject:
   m_ObjectHideFlags: 0
@@ -2587,9 +2600,10 @@ GameObject:
   - component: {fileID: 1552489883}
   - component: {fileID: 1552489887}
   - component: {fileID: 1552489886}
+  - component: {fileID: 1552489888}
   - component: {fileID: 1552489885}
   m_Layer: 0
-  m_Name: StopButton
+  m_Name: PauseButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2609,13 +2623,13 @@ RectTransform:
   m_Children:
   - {fileID: 1199893403}
   - {fileID: 303476356}
-  m_Father: {fileID: 1638685968}
+  m_Father: {fileID: 583736661}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: -1820, y: -980}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1552489885
 MonoBehaviour:
@@ -2680,6 +2694,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1552489888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552489882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33a72219db416e64ca367e23db5fc14f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!213 &1583045570
 Sprite:
   m_ObjectHideFlags: 0
@@ -2923,7 +2949,6 @@ RectTransform:
   m_Children:
   - {fileID: 1914833850}
   - {fileID: 1929501030}
-  - {fileID: 1552489883}
   m_Father: {fileID: 583736661}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
