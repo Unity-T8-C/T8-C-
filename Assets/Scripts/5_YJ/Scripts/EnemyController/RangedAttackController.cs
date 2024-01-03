@@ -33,7 +33,6 @@ public class RangedAttackController : MonoBehaviour
         _rigidbody.velocity = _direction * _rangedData.atkSpeed;
     }
 
-
     public void InitializeAttack(Vector2 direction, RangedEnemyData attackData, ProjectileManager projectileManager)
     {
         _projectileManager = projectileManager;
@@ -51,5 +50,19 @@ public class RangedAttackController : MonoBehaviour
     private void UpdateProjectilSprite()
     {
         transform.localScale = Vector3.one * _rangedData.size;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // player 와 부딪혔을 때 어떻게 처리 할 것인지 ( HP )
+        if (collision.CompareTag("Player"))
+        {
+            DestroyProjectile();
+        }
+    }
+
+    private void DestroyProjectile()
+    {
+        gameObject.SetActive(false);
     }
 }

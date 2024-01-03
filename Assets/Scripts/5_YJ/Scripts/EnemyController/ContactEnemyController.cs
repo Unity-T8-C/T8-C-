@@ -1,11 +1,7 @@
 using UnityEngine;
 
 public class ContactEnemyController : EnemyController
-{
-    private EnemyMovement movement;
-
-    private bool targetCollding; // 충돌 확인
-
+{ 
     protected override void Start()
     {
         base.Start();
@@ -27,28 +23,21 @@ public class ContactEnemyController : EnemyController
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        player = collision.gameObject;
-
-        if (!player)
+        // player 와 부딪혔을 때 어떻게 처리 할 것인지 ( HP )
+        if (collision.CompareTag("Player"))
         {
-            return;
+            DestroyProjectile();
         }
-
-        movement = player.GetComponent<EnemyMovement>();
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!player)
-        {
-            return;
-        }
-
     }
 
     private void HpChange()
     {
         EnemySO enemySO = Stats.CurrentStats.enemySO;
         // bool damage = ( 캐릭터와 충돌 했을 때 캐릭터의 공격력 만큼 -)
+    }
+
+    private void DestroyProjectile()
+    {
+        gameObject.SetActive(false);
     }
 }
