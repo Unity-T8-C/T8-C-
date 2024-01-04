@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8676c8fb1ca666f4db0d265781c2eea9, type: 3}
   m_Name: ContactEnemyData
   m_EditorClassIdentifier: 
-  hp: 0
-  atk: 0
-  atkDelay: 0
+  hp: 10
+  atk: 1
+  atkDelay: 1
   target:
     serializedVersion: 2
     m_Bits: 1048576
-  atkRange: 0
+  atkRange: 1
