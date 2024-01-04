@@ -9,4 +9,11 @@ public class EnemySO : ScriptableObject
     public int atk;
     public float atkDelay;
     public LayerMask target;
+
+    [Header("Boss Info")]
+    public int bossHp;
+    public int bossAtk;
+    public float bossAtkDelay;
+    public bool isBoss;
+
 }

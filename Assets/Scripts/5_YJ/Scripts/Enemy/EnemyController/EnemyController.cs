@@ -11,7 +11,19 @@ public class EnemyController : TopDownEnemyController
 
     [SerializeField][Range(0.0f, 100.0f)] protected float followRange;
 
-    protected virtual void Start()
+    [SerializeField] protected bool isBoss;
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        // player 와 부딪혔을 때 어떻게 처리 할 것인지
+        if (collision.CompareTag("Player"))
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
+protected virtual void Start()
     { 
         gameManager = GameManager.Instance;
         target = gameManager.Player.transform;
