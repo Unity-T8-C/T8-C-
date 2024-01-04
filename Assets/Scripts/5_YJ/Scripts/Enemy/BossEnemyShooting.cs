@@ -6,6 +6,7 @@ public class BossEnemyShooting : MonoBehaviour
     [SerializeField] private Transform projectileAttackPosLevel1;
     [SerializeField] private Transform projectileAttackPosLevel2;
     [SerializeField] private Transform projectileAttackPosLevel3;
+    [SerializeField] private Transform enemySpawnPos;
 
     private Vector2 _aimDirection = Vector2.right;
     private ProjectileManager _projectileManager;
@@ -59,6 +60,7 @@ public class BossEnemyShooting : MonoBehaviour
         {
             _projectileManager.BossEnemyAttackingLevel2(projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
+            //_projectileManager.BossEnemySpawn(enemySpawnPos.position);
         }
 
         if (stats.CurrentStats.maxHp <= 100)
