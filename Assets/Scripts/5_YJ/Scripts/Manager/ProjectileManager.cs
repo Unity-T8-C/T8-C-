@@ -54,4 +54,52 @@ public class ProjectileManager : MonoBehaviour
         Debug.Log("ShootBullet");
         obj.SetActive(true);
     }
+
+    public void BossEnemyAttacking(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
+    {
+        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag);
+
+        obj.transform.position = startPostiion;
+        BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
+        attackController.BossInitializeAttack(direction, bosssData, this);
+
+        Debug.Log("ShootBossBullet");
+        obj.SetActive(true);
+    }
+
+    public void BossEnemyAttackingLevel2(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
+    {
+        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag2);
+
+        obj.transform.position = startPostiion;
+        BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
+        attackController.BossInitializeAttack(direction, bosssData, this);
+
+        Debug.Log("ShootBossBulletLevel2");
+        obj.SetActive(true);
+    }
+
+    public void BossEnemyAttackingLevel3(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
+    {
+        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag3);
+
+        obj.transform.position = startPostiion;
+        BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
+        attackController.BossInitializeAttack(direction, bosssData, this);
+
+        Debug.Log("ShootBossBulletLevel3");
+        obj.SetActive(true);
+    }
+
+    public void BossEnemySpawn(Vector2 startPostiion, Vector2 direction, BossEnemyData bossData)
+    {
+        GameObject obj = objectPool.SpawnFromPool(bossData.spawnEnemyTag);
+
+        obj.transform.position = startPostiion;
+        ContactEnemyController enemyController = obj.GetComponent<ContactEnemyController>();
+        enemyController.EnemySpawn(direction, bossData, this);
+
+        Debug.Log("ShootBossBulletLevel3");
+        obj.SetActive(true);
+    }
 }

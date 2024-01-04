@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c87f22b026d1b24baa0f0bf2b091dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 2
 --- !u!114 &8440962704882098290
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,8 +159,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainSpriteRenderer: {fileID: 1102932142301136639}
-  followRange: 100
-  shootRange: 100
+  followRange: 50
+  shootRange: 5
 --- !u!114 &3823747331594337452
 MonoBehaviour:
   m_ObjectHideFlags: 0

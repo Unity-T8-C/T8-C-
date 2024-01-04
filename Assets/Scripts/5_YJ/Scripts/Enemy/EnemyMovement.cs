@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 movementDirection = Vector2.zero;
     private Rigidbody2D _rigidbody2D;
     private EnemyStatsHandler stats;
+    public float speed;
 
     private void Awake()
     {
