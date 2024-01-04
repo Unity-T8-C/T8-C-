@@ -91,15 +91,16 @@ public class ProjectileManager : MonoBehaviour
         obj.SetActive(true);
     }
 
-    public void BossEnemySpawn(Vector2 startPostiion, Vector2 direction, BossEnemyData bossData)
+    public void BossEnemySpawn(Transform startPostiion, BossEnemyData bossData)
     {
         GameObject obj = objectPool.SpawnFromPool(bossData.spawnEnemyTag);
 
-        obj.transform.position = startPostiion;
-        ContactEnemyController enemyController = obj.GetComponent<ContactEnemyController>();
-        enemyController.EnemySpawn(direction, bossData, this);
+        obj.transform.position = startPostiion.position;
 
-        Debug.Log("ShootBossBulletLevel3");
+        ContactEnemyController enemyController = obj.GetComponent<ContactEnemyController>();
+        enemyController.EnemySpawn(bossData, this);
+
+        Debug.Log("SpawnEnemy");
         obj.SetActive(true);
     }
 }

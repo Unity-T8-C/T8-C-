@@ -6,20 +6,27 @@ public class BossEnemyShooting : MonoBehaviour
     [SerializeField] private Transform projectileAttackPosLevel1;
     [SerializeField] private Transform projectileAttackPosLevel2;
     [SerializeField] private Transform projectileAttackPosLevel3;
-    [SerializeField] private Transform enemySpawnPos;
+    [SerializeField] protected Transform enemySpawnPos;
+    [SerializeField] protected Transform enemySpawnPos2;
 
     private Vector2 _aimDirection = Vector2.right;
     private ProjectileManager _projectileManager;
 
-    private EnemyStatsHandler stats;
+    protected EnemyStatsHandler stats;
+    protected BossEnemyData _bossData;
+
+    public bool spawnDelay;
 
     private void Awake()
     {
         Controller = GetComponent<EnemyController>();
         stats = GetComponent<EnemyStatsHandler>();
+        _bossData = new BossEnemyData();
+
+        spawnDelay = true;
     }
 
-    void Start()
+    private void Start()
     {
         _projectileManager = ProjectileManager.Instance;
         Controller.OnAttackEvent += OnAttack;
@@ -60,18 +67,36 @@ public class BossEnemyShooting : MonoBehaviour
         {
             _projectileManager.BossEnemyAttackingLevel2(projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
-            //_projectileManager.BossEnemySpawn(enemySpawnPos.position);
+        }
+
+        if (stats.CurrentStats.maxHp <= 300 && spawnDelay)
+        {
+            _bossData = bossData;
+            Invoke("SpawnEnemy", 5.0f);
+            spawnDelay = false;
         }
 
         if (stats.CurrentStats.maxHp <= 100)
         {
             _projectileManager.BossEnemyAttackingLevel3(projectileAttackPosLevel3.position,
                                        Rotate(_aimDirection, angle), bossData);
+            _projectileManager.BossEnemySpawn(enemySpawnPos2, bossData);
         }
     }
 
     private static Vector2 Rotate(Vector2 v, float degree)
     {
         return Quaternion.Euler(0, 0, degree) * v;
+    }
+
+    private void SpawnEnemy()
+    {
+        if (_bossData != null)
+        {
+            _projectileManager.BossEnemySpawn(enemySpawnPos, _bossData);
+            _bossData = null;
+            spawnDelay = true;
+        }
+        Debug.Log("근접 공격체 소환");
     }
 }

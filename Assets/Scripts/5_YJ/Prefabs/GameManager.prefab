@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5993754757699109235}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8402939123781180464
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57525563b36098c478a927f3c1b2d205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 6477081684349868344, guid: fe88846abfecaba4ba6dd001684bdd5a, type: 3}
+  Player: {fileID: 0}
 --- !u!1 &2417016870369716305
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,3 +107,15 @@ MonoBehaviour:
   - tag: Boll
     prefab: {fileID: 5449256170085169142, guid: 98f86bbf929c4f24da381f21d67e82e8, type: 3}
     size: 10
+  - tag: BossProjetile1
+    prefab: {fileID: 3252774086257079424, guid: aac4e6d9f9c746c49a01da6f25ef2df1, type: 3}
+    size: 5
+  - tag: BossProjetile2
+    prefab: {fileID: 3021810433802780316, guid: 384787ec9e2cc634a9d447b273018726, type: 3}
+    size: 5
+  - tag: BossProjetile3
+    prefab: {fileID: 5740593633451968765, guid: e682876d0d0f88c408df08b033afa29f, type: 3}
+    size: 5
+  - tag: EnemySpawn
+    prefab: {fileID: 4779978215455568733, guid: 17a4a52ce103d5a419e5ddc5a3052e45, type: 3}
+    size: 8

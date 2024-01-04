@@ -40,11 +40,10 @@ public class ContactEnemyController : EnemyController
         // bool damage = ( 캐릭터와 충돌 했을 때 캐릭터의 공격력 만큼 -)
     }
 
-    public void EnemySpawn(Vector2 direction, BossEnemyData bossData, ProjectileManager projectileManager)
+    public void EnemySpawn(BossEnemyData bossData, ProjectileManager projectileManager)
     {
         _projectileManager = projectileManager;
         bossEnemyData = bossData;
-        _direction = direction;
     }
 
     private void DestroyProjectile()
