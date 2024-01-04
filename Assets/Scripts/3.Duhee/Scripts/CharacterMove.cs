@@ -18,6 +18,7 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjA;
     public GameObject bulletObjB;
 
+    Animator anim;
    
     
     void Start()
@@ -25,6 +26,10 @@ public class CharacterMove : MonoBehaviour
         
     }
 
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();    
+    }
     // Update is called once per frame
     void Update()
     {
@@ -53,6 +58,11 @@ public class CharacterMove : MonoBehaviour
         Vector3 MovePos = new Vector3(h, v, 0).normalized * speed * Time.deltaTime;
 
         transform.position = PlayerPos + MovePos;
+
+        if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
+            {
+            anim.SetInteger("Input", (int)h);
+        }
     }
 
     void Fire()
