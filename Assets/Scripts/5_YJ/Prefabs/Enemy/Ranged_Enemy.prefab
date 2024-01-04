@@ -37,7 +37,7 @@ Transform:
   - {fileID: 4681584767297356204}
   - {fileID: 6606391851199284747}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &6150099546871060160
 Rigidbody2D:
@@ -95,7 +95,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -145,6 +145,9 @@ MonoBehaviour:
     statsChangeType: 1
     maxHp: 1000
     moveSpeed: 2
+    attackDamage: 0
+    attackDelay: 0
+    bossHp: 0
     enemySO: {fileID: 11400000, guid: 35e39ff1ea7b6ec429d2d6dde61d44c4, type: 2}
 --- !u!114 &85839383992593450
 MonoBehaviour:
@@ -160,6 +163,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainSpriteRenderer: {fileID: 1102932142301136639}
   followRange: 50
+  isBoss: 0
   shootRange: 5
 --- !u!114 &3823747331594337452
 MonoBehaviour:
