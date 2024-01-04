@@ -30,6 +30,11 @@ public class RangedAttackController : MonoBehaviour
 
         _currentDuration += Time.deltaTime;
 
+        if (_currentDuration > _rangedData.duration)
+        {
+            DestroyProjectile();
+        }
+
         _rigidbody.velocity = _direction * _rangedData.atkSpeed;
     }
 
