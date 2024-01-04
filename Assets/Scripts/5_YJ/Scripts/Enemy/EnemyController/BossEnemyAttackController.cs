@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class RangedAttackController : MonoBehaviour
+public class BossEnemyAttackController : MonoBehaviour
 {
     [SerializeField] private LayerMask CollisionLayer;
 
-    private RangedEnemyData _rangedData;
+    private BossEnemyData _bossData;
     private float _currentDuration;
     private Vector2 _direction;
     private bool _isReady;
@@ -29,19 +29,18 @@ public class RangedAttackController : MonoBehaviour
         }
 
         _currentDuration += Time.deltaTime;
-
-        if (_currentDuration > _rangedData.duration)
+        if (_currentDuration > _bossData.duration)
         {
             DestroyProjectile();
         }
 
-        _rigidbody.velocity = _direction * _rangedData.atkSpeed;
+        _rigidbody.velocity = _direction * _bossData.atkSpeed;
     }
 
-    public void InitializeAttack(Vector2 direction, RangedEnemyData attackData, ProjectileManager projectileManager)
+    public void BossInitializeAttack(Vector2 direction, BossEnemyData bossData, ProjectileManager projectileManager)
     {
         _projectileManager = projectileManager;
-        _rangedData = attackData;
+        _bossData = bossData;
         _direction = direction;
 
         UpdateProjectilSprite();
@@ -54,7 +53,7 @@ public class RangedAttackController : MonoBehaviour
 
     private void UpdateProjectilSprite()
     {
-        transform.localScale = Vector3.one * _rangedData.size;
+        transform.localScale = Vector3.one * _bossData.size;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

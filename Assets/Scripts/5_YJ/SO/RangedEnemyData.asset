@@ -19,9 +19,9 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1048576
   projectileNameTag: Boll
-  duration: 1
-  spread: 1
-  numberofProjectilesPerShot: 1
+  duration: 5
+  spread: 20
+  numberofProjectilesPerShot: 2
   multipleProjectilesAngel: 1
   atkSpeed: 5
-  size: 2
+  size: 0.5
