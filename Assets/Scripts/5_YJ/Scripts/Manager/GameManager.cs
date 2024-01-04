@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
 
     public void retry()
     {
-        SceneManager.LoadScene("MainScene");
+        SceneManager.LoadScene("KHJScene");
     }
 
     void initGame()
