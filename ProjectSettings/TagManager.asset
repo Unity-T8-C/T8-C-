@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - item
   - Projectile
+  - Meteor
   layers:
   - Default
   - TransparentFX
