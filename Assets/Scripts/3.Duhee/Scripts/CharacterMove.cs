@@ -35,7 +35,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -46,7 +46,7 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-   void Move()
+    void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
@@ -67,7 +67,7 @@ public class CharacterMove : MonoBehaviour
         transform.position = PlayerPos + MovePos;
 
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
-            {
+        {
             anim.SetInteger("Input", (int)h);
         }
     }
@@ -79,8 +79,8 @@ public class CharacterMove : MonoBehaviour
 
         if (curShotDelay < maxShotDelay)
             return;
-        
-        switch(power)
+
+        switch (power)
         {
             case 1:
                 GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
@@ -88,7 +88,7 @@ public class CharacterMove : MonoBehaviour
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 2:
-                GameObject bulletR = Instantiate(bulletObjA, transform.position+Vector3.right*0.1f, transform.rotation);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
                 GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
@@ -107,7 +107,7 @@ public class CharacterMove : MonoBehaviour
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
         }
-        
+
 
         curShotDelay = 0;
     }
@@ -163,7 +163,6 @@ public class CharacterMove : MonoBehaviour
             }
     }
 
-
     void GameOver()
     {
         isInvincible = true;
@@ -173,18 +172,15 @@ public class CharacterMove : MonoBehaviour
         {
             transform.position = initialPosition;
 
-            enabled = false;
-
             StartCoroutine(EnablePlayerControls());
             playerLife.TakeDamage();
         }
         else
         {
-            //게임종료조건 추가필요
-            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            // 게임 종료 로직 추가
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
-
     IEnumerator EnablePlayerControls()
     {
         yield return new WaitForSeconds(3f);
@@ -193,6 +189,7 @@ public class CharacterMove : MonoBehaviour
         invincibilityTimer = 0f;
         initialPosition = transform.position;
 
-        enabled = true;
+        //enabled = true;
+        gameObject.SetActive(true);
     }
 }
