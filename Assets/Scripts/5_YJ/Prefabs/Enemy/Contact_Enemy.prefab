@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 4121906685542666868}
   - component: {fileID: 6371621651547787227}
   - component: {fileID: 1291391163069437014}
+  - component: {fileID: 2182759057523334855}
   m_Layer: 21
   m_Name: Contact_Enemy
   m_TagString: Enemy
@@ -241,3 +242,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2182759057523334855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779978215455568733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602497a7c78062a459cc16f570fae525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: 2257572470644336511, guid: 839e661f29d4a3e499a54486c5c8ff81, type: 3}
