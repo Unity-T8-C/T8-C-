@@ -576,7 +576,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   baseStats:
     statsChangeType: 1
-    maxHp: 50
+    maxHp: 1000
     moveSpeed: 3
     attackDamage: 0
     attackDelay: 0

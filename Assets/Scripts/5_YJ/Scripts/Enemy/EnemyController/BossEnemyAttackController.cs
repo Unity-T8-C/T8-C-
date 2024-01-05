@@ -61,7 +61,9 @@ public class BossEnemyAttackController : MonoBehaviour
         // player 와 부딪혔을 때 어떻게 처리 할 것인지 ( HP )
         if (collision.CompareTag("Player"))
         {
+            DestroyProjectile();
             Destroy(collision.gameObject);
+            GameManager.Instance.PlayerDie();
         }
     }
 

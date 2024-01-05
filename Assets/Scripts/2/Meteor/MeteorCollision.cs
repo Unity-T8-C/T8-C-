@@ -15,14 +15,16 @@ public class Meteorite : MonoBehaviour
             // 운석 공격력만큼 플레이어 체력 감소
             // collision.GetComponent<PlayerHP>().TakeDamage(damage);
             // 운석 삭제
+            Destroy(collision.gameObject);
             OnDie();
+            GameManager.Instance.PlayerDie();
         }
     }
 
     public void OnDie()
     {
         // 폭발 이펙트 생성
-        Instantiate(explosionPrefab, transform.position, Quaternion.identity);
+        //Instantiate(explosionPrefab, transform.position, Quaternion.identity);
         // 운석 삭제
         Destroy(gameObject);
     }

@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 8440962704882098290}
   - component: {fileID: 85839383992593450}
   - component: {fileID: 3823747331594337452}
+  - component: {fileID: 5282050675508857244}
   m_Layer: 21
   m_Name: Ranged_Enemy_2
   m_TagString: Enemy
@@ -262,7 +263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4e9a0b69e4eaa4dafc5f7ab7bb40c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSpriteRenderer: {fileID: 0}
+  mainSpriteRenderer: {fileID: 3842431191774398730}
   followRange: 50
   isBoss: 0
   shootRange: 5
@@ -279,6 +280,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileAttackPos: {fileID: 6606391851199284747}
+--- !u!114 &5282050675508857244
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 861555455177462471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 602497a7c78062a459cc16f570fae525, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemPrefabs:
+  - {fileID: 2257572470644336511, guid: 839e661f29d4a3e499a54486c5c8ff81, type: 3}
 --- !u!1 &5915502057665185932
 GameObject:
   m_ObjectHideFlags: 0

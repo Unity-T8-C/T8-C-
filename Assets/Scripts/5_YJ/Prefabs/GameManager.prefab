@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57525563b36098c478a927f3c1b2d205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Player: {fileID: 0}
+  Player: {fileID: 630661998131981351, guid: fe88846abfecaba4ba6dd001684bdd5a, type: 3}
+  endPanel: {fileID: 3116444961154220576, guid: 04648c93df7e6be499d22a0fdf15b6a5, type: 3}
+  timeText: {fileID: 0}
 --- !u!1 &2417016870369716305
 GameObject:
   m_ObjectHideFlags: 0

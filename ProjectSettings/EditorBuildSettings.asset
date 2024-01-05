@@ -5,16 +5,19 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/1/Story Scene.unity
     guid: ba2ddc4338a3a4346898e1c3221c11d9
   - enabled: 1
     path: Assets/Scenes/StartScene.unity
     guid: 97470628e8b3c984095bfb2b5c3933b8
   - enabled: 1
+    path: Assets/Scenes/MainScene.unity
+    guid: 3c2f7b754e7b28d49975c5056422e25a
+  - enabled: 0
     path: Assets/Scenes/2/KGH.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/4. KHJ_Scene/KHJScene.unity
     guid: df5e74f941a7cec4a9b636e0d5f25935
   m_configObjects: {}

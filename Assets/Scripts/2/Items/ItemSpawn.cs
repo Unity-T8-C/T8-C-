@@ -23,10 +23,10 @@ public class ItemSpawn : MonoBehaviour
     private void SpawnItem()
     {
         
-        int spawnItem = Random.Range(0, 100);
+        int spawnItem = Random.Range(0, 10);
         if (spawnItem < 10)
         {
-            Instantiate(itemPrefabs[1], transform.position, Quaternion.identity);
+            Instantiate(itemPrefabs[0], transform.position, Quaternion.identity);
         }
         
     }

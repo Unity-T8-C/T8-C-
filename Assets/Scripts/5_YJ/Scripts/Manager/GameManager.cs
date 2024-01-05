@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
     public Text timeText;   //½Ã°£
     float alive = 0f;
 
+    private bool live;
+
     public static GameManager Instance
     {
         get
@@ -41,17 +43,17 @@ public class GameManager : MonoBehaviour
         {
             if (_instance != this) Destroy(this);
         }
+
+        live = true;
     }
 
-    private void Start()
+    private void Update()
     {
-        Time.timeScale = 1.0f;
-    }
-
-    private void Update()   
-    {
-        alive += Time.deltaTime;
-        timeText.text = alive.ToString("N2");
+        if (live)
+        {
+            alive += Time.deltaTime;
+            timeText.text = alive.ToString("N2");
+        }
     }
 
     public void gameOver()
@@ -60,9 +62,14 @@ public class GameManager : MonoBehaviour
         endPanel.SetActive(true);
     }
 
-
     public void retry()
     {
         SceneManager.LoadScene("MainScene");
+    }
+
+    public void PlayerDie()
+    {
+        live = false;
+        gameOver();
     }
 }
