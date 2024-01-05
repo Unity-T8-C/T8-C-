@@ -18,9 +18,14 @@ MonoBehaviour:
   target:
     serializedVersion: 2
     m_Bits: 1048576
-  projectileNameTag: BossProjetile1
-  projectileNameTag2: BossProjetile2
-  projectileNameTag3: BossProjetile3
+  bossHp: 0
+  bossAtk: 0
+  bossAtkDelay: 0
+  isBoss: 0
+  projectileNameTags:
+  - BossProjetile1
+  - BossProjetile2
+  - BossProjetile3
   spawnEnemyTag: EnemySpawn
   duration: 5
   spread: 20
