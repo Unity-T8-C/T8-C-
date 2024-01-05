@@ -137,6 +137,9 @@ MonoBehaviour:
     statsChangeType: 0
     maxHp: 0
     moveSpeed: 2
+    attackDamage: 0
+    attackDelay: 0
+    bossHp: 0
     enemySO: {fileID: 11400000, guid: ea91e33d15b52b44d958625ca90bb8a6, type: 2}
 --- !u!114 &25031003401333549
 MonoBehaviour:
@@ -152,6 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainSpriteRenderer: {fileID: 8502523907223520395}
   followRange: 50
+  isBoss: 0
 --- !u!114 &4121906685542666868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,6 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c87f22b026d1b24baa0f0bf2b091dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 0
 --- !u!61 &6371621651547787227
 BoxCollider2D:
   m_ObjectHideFlags: 0

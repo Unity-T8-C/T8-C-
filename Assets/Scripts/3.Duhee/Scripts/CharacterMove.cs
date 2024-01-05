@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -19,11 +20,17 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjB;
 
     Animator anim;
-   
-    
+
+    private PlayerLife playerLife;
+    public float invincibilityTime = 2f;
+    private bool isInvincible = false;
+    private float invincibilityTimer = 0f;
+    private Vector3 initialPosition;
+
     void Start()
     {
-        
+        initialPosition = transform.position;
+        playerLife = GetComponent<PlayerLife>();
     }
 
     private void Awake()
@@ -154,5 +161,38 @@ public class CharacterMove : MonoBehaviour
                     isTouchLeft = false;
                     break;
             }
+    }
+
+
+    void GameOver()
+    {
+        isInvincible = true;
+        invincibilityTimer = invincibilityTime;
+
+        if (playerLife.currentLives > 0)
+        {
+            transform.position = initialPosition;
+
+            enabled = false;
+
+            StartCoroutine(EnablePlayerControls());
+            playerLife.TakeDamage();
+        }
+        else
+        {
+            //게임종료조건 추가필요
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+
+    IEnumerator EnablePlayerControls()
+    {
+        yield return new WaitForSeconds(3f);
+
+        isInvincible = false;
+        invincibilityTimer = 0f;
+        initialPosition = transform.position;
+
+        enabled = true;
     }
 }

@@ -15,7 +15,8 @@ public class Meteorite : MonoBehaviour
             // 운석 공격력만큼 플레이어 체력 감소
             // collision.GetComponent<PlayerHP>().TakeDamage(damage);
             // 운석 삭제
-            DeletMeteor();
+            //DeletMeteor();
+            Destroy(collision.gameObject);
         }
     }
 
