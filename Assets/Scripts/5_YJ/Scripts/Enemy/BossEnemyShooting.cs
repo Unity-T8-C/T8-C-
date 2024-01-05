@@ -1,3 +1,5 @@
+using System.Collections;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class BossEnemyShooting : MonoBehaviour
@@ -8,6 +10,15 @@ public class BossEnemyShooting : MonoBehaviour
     [SerializeField] private Transform projectileAttackPosLevel3;
     [SerializeField] protected Transform enemySpawnPos;
     [SerializeField] protected Transform enemySpawnPos2;
+
+    [SerializeField]
+    private GameObject alertLinePrefab;
+    [SerializeField]
+    private GameObject laserPrefab;
+    [SerializeField] private Transform laserPos;
+
+    private float laserDelay = 7.0f;
+    private bool laserDelayCheck;
 
     private Vector2 _aimDirection = Vector2.right;
     private ProjectileManager _projectileManager;
@@ -24,6 +35,7 @@ public class BossEnemyShooting : MonoBehaviour
         _bossData = new BossEnemyData();
 
         spawnDelay = true;
+        laserDelayCheck = true;
     }
 
     private void Start()
@@ -55,17 +67,22 @@ public class BossEnemyShooting : MonoBehaviour
             CreateProjectile(bossData, angle);
             Debug.Log("OnAttack");
         }
+
+        if (stats.CurrentStats.maxHp <= 250 && laserDelayCheck)
+        {
+            StartCoroutine("LaserAttack");
+        }
     }
 
     private void CreateProjectile(BossEnemyData bossData, float angle)
     {
         Debug.Log("CreateProjectile");
-        _projectileManager.BossEnemyAttacking(projectileAttackPosLevel1.position,
+        _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
                                        Rotate(_aimDirection, angle), bossData);
 
         if (stats.CurrentStats.maxHp <= 500)
         {
-            _projectileManager.BossEnemyAttackingLevel2(projectileAttackPosLevel2.position,
+            _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
         }
 
@@ -78,7 +95,7 @@ public class BossEnemyShooting : MonoBehaviour
 
         if (stats.CurrentStats.maxHp <= 100)
         {
-            _projectileManager.BossEnemyAttackingLevel3(projectileAttackPosLevel3.position,
+            _projectileManager.BossEnemyAttacking(3, projectileAttackPosLevel3.position,
                                        Rotate(_aimDirection, angle), bossData);
             _projectileManager.BossEnemySpawn(enemySpawnPos2, bossData);
         }
@@ -98,5 +115,27 @@ public class BossEnemyShooting : MonoBehaviour
             spawnDelay = true;
         }
         Debug.Log("근접 공격체 소환");
+    }
+
+    private IEnumerator LaserAttack()
+    {
+        while (true)
+        {
+            laserDelayCheck = false;
+
+            GameObject laserLine = Instantiate(alertLinePrefab, new Vector3(-0.17f, 0, 0), Quaternion.identity);
+
+            yield return new WaitForSeconds(3.0f);
+
+            Destroy(laserLine);
+
+            laserPrefab.SetActive(true);
+
+            yield return new WaitForSeconds(1.0f);
+            laserPrefab.SetActive(false);
+
+            yield return new WaitForSeconds(laserDelay);
+            laserDelayCheck = true;
+        }
     }
 }

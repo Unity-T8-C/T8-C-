@@ -69,6 +69,6 @@ public class GameManager : MonoBehaviour
     void initGame()
     {
         Time.timeScale = 1.0f;
-        limit = 5f;
+        limit = 50f;
     }
 }
