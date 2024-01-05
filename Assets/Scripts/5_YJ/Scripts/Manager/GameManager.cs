@@ -7,9 +7,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public GameObject Player;
 
-    public GameObject EndPanel;
+    public GameObject endPanel;
     public Text timeText;   //시간
-    float limit = 20f;
+    float alive = 0f;
 
     public static GameManager Instance
     {
@@ -45,30 +45,24 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        initGame();
+        Time.timeScale = 1.0f;
     }
 
-    private void Update()   //시간
+    private void Update()   
     {
-        limit -= Time.deltaTime;
-        if (limit < 0)
-        {
-            Time.timeScale = 0.0f;
-            EndPanel.SetActive(true);
-            limit = 0.0f;
-        }
-
-        timeText.text = limit.ToString("N2");
+        alive += Time.deltaTime;
+        timeText.text = alive.ToString("N2");
     }
+
+    public void gameOver()
+    {
+        Time.timeScale = 0.0f;
+        endPanel.SetActive(true);
+    }
+
 
     public void retry()
     {
         SceneManager.LoadScene("MainScene");
-    }
-
-    void initGame()
-    {
-        Time.timeScale = 1.0f;
-        limit = 20f;
     }
 }
