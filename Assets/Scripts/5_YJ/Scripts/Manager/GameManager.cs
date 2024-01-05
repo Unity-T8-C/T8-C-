@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject EndPanel;
     public Text timeText;   //½Ã°£
-    float limit = 5f;
+    float limit = 20f;
 
     public static GameManager Instance
     {
@@ -63,12 +63,12 @@ public class GameManager : MonoBehaviour
 
     public void retry()
     {
-        SceneManager.LoadScene("KHJScene");
+        SceneManager.LoadScene("MainScene");
     }
 
     void initGame()
     {
         Time.timeScale = 1.0f;
-        limit = 5f;
+        limit = 20f;
     }
 }
