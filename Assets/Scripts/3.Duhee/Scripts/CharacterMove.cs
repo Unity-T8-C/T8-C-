@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -19,16 +20,22 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjB;
 
     Animator anim;
-   
-    
+
+    private PlayerLife playerLife;
+    public float invincibilityTime = 2f;
+    private bool isInvincible = false;
+    private float invincibilityTimer = 0f;
+    private Vector3 initialPosition;
+
     void Start()
     {
-        
+        initialPosition = transform.position;
+        playerLife = GetComponent<PlayerLife>();
     }
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
     }
     // Update is called once per frame
     void Update()
@@ -39,7 +46,7 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-   void Move()
+    void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
@@ -60,7 +67,7 @@ public class CharacterMove : MonoBehaviour
         transform.position = PlayerPos + MovePos;
 
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
-            {
+        {
             anim.SetInteger("Input", (int)h);
         }
     }
@@ -72,8 +79,8 @@ public class CharacterMove : MonoBehaviour
 
         if (curShotDelay < maxShotDelay)
             return;
-        
-        switch(power)
+
+        switch (power)
         {
             case 1:
                 GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
@@ -81,7 +88,7 @@ public class CharacterMove : MonoBehaviour
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
             case 2:
-                GameObject bulletR = Instantiate(bulletObjA, transform.position+Vector3.right*0.1f, transform.rotation);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
                 GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
@@ -100,7 +107,7 @@ public class CharacterMove : MonoBehaviour
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 break;
         }
-        
+
 
         curShotDelay = 0;
     }
@@ -154,5 +161,35 @@ public class CharacterMove : MonoBehaviour
                     isTouchLeft = false;
                     break;
             }
+    }
+
+    void GameOver()
+    {
+        isInvincible = true;
+        invincibilityTimer = invincibilityTime;
+
+        if (playerLife.currentLives > 0)
+        {
+            transform.position = initialPosition;
+
+            StartCoroutine(EnablePlayerControls());
+            playerLife.TakeDamage();
+        }
+        else
+        {
+            // 게임 종료 로직 추가
+            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
+    }
+    IEnumerator EnablePlayerControls()
+    {
+        yield return new WaitForSeconds(3f);
+
+        isInvincible = false;
+        invincibilityTimer = 0f;
+        initialPosition = transform.position;
+
+        //enabled = true;
+        gameObject.SetActive(true);
     }
 }
