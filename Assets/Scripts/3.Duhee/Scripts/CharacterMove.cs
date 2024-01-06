@@ -11,6 +11,8 @@ public class CharacterMove : MonoBehaviour
     public float maxShotDelay;
     public float curShotDelay;
 
+    public int damage = 10;
+
     public bool isTouchTop;
     public bool isTouchBottom;
     public bool isTouchRight;
@@ -20,6 +22,7 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjB;
 
     Animator anim;
+    AudioSource audio;
 
     private PlayerLife playerLife;
     public float invincibilityTime = 2f;
@@ -35,6 +38,7 @@ public class CharacterMove : MonoBehaviour
 
     private void Awake()
     {
+        audio = GetComponent<AudioSource>();
         anim = GetComponent<Animator>();
     }
     // Update is called once per frame
@@ -86,6 +90,7 @@ public class CharacterMove : MonoBehaviour
                 GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 2:
                 GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
@@ -94,6 +99,7 @@ public class CharacterMove : MonoBehaviour
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 3:
                 GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
@@ -105,9 +111,10 @@ public class CharacterMove : MonoBehaviour
                 rigidRR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidCC.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
-        }
 
+        }
 
         curShotDelay = 0;
     }
