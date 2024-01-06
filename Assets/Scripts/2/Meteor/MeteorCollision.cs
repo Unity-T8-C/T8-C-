@@ -2,8 +2,7 @@ using UnityEngine;
 
 public class Meteorite : MonoBehaviour
 {
-    [SerializeField]
-    private int damage = 5;         // 운석 공격력
+   
     [SerializeField]
     private GameObject explosionPrefab; // 폭발 효과
 
@@ -11,10 +10,7 @@ public class Meteorite : MonoBehaviour
     {
         
         if (collision.CompareTag("Player"))
-        {
-            // 운석 공격력만큼 플레이어 체력 감소
-            // collision.GetComponent<PlayerHP>().TakeDamage(damage);
-            // 운석 삭제
+        {           
             Destroy(collision.gameObject);
             OnDie();
             GameManager.Instance.PlayerDie();

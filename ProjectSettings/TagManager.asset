@@ -8,6 +8,8 @@ TagManager:
   - item
   - Projectile
   - Meteor
+  - Bullet
+  - Boss
   layers:
   - Default
   - TransparentFX

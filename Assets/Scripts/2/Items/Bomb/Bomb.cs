@@ -8,7 +8,6 @@ public class BombBoom : MonoBehaviour
     [SerializeField]
     private AudioClip boomAudio;            // 사운드 파일
     [SerializeField]
-    private int damage = 100;       // 폭탄 데미지
     private float boomDelay = 0.5f; // 폭탄 이동 시간 (0.5초 후 폭발)
     private Animator animator;
     private AudioSource audioSource;
@@ -52,15 +51,14 @@ public class BombBoom : MonoBehaviour
     {
         
        // 현재 게임 내에서 "Enemy" 태그를 가진 모든 오브젝트 정보를 가져온다
-        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
         // 현재 게임 내에서 "Meteor" 태그를 가진 모든 오브젝트 정보를 가져온다
         GameObject[] meteorites = GameObject.FindGameObjectsWithTag("Meteor");
 
         // 모든 적 파괴
-        for (int i = 0; i < enemys.Length; ++i)
+        foreach (GameObject enemy in enemies)
         {
-           // enemys[i].GetComponent<Enemy>().OnDie();                                   
-            
+            Destroy(enemy);
         }
 
         // 모든 운석 파괴
@@ -68,14 +66,7 @@ public class BombBoom : MonoBehaviour
         {
             meteorites[i].GetComponent<Meteorite>().OnDie();
         }            
-
-        
-        GameObject boss = GameObject.FindGameObjectWithTag("Boss");
-        if (boss != null)
-        {            
-            //boss.GetComponent<BossHP>().TakeDamage(damage);
-        }
-        
+       
 
         // Boom 오브젝트 삭제
         Destroy(gameObject);
