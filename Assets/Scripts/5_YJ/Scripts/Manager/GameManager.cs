@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
             alive += Time.deltaTime;
             timeText.text = alive.ToString("N2");
 
-            if(alive >= 5f)
+            if(alive >= 60f)
             {
                 PlayerDie();
             }
@@ -85,6 +85,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1.0f;
         endPanel.SetActive(false);
     }
+
 
 
     public void PlayerDie()
