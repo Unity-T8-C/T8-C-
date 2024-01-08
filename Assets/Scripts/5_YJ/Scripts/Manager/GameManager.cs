@@ -47,13 +47,25 @@ public class GameManager : MonoBehaviour
         live = true;
     }
 
+    void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
+
     private void Update()
     {
         if (live)
         {
             alive += Time.deltaTime;
             timeText.text = alive.ToString("N2");
+
+            if(alive >= 5f)
+            {
+                PlayerDie();
+            }
         }
+
+
     }
 
     public void gameOver()
@@ -65,7 +77,15 @@ public class GameManager : MonoBehaviour
     public void retry()
     {
         SceneManager.LoadScene("MainScene");
+
+        alive = 0f;
+        timeText.text = alive.ToString("N2");
+        live = true;
+
+        Time.timeScale = 1.0f;
+        endPanel.SetActive(false);
     }
+
 
     public void PlayerDie()
     {
