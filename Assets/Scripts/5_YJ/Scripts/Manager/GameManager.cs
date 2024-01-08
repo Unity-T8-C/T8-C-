@@ -86,8 +86,9 @@ public class GameManager : MonoBehaviour
     public void retry()
     {
         alive = Time.deltaTime;
-
+        Time.timeScale = 1.0f;
         live = true;
+
         endPanel.SetActive(false);
 
         SceneManager.LoadScene("MainScene");
@@ -97,5 +98,10 @@ public class GameManager : MonoBehaviour
     {
         live = false;
         gameOver();
+    }
+
+    public void PlayerWin()
+    {
+        SceneManager.LoadScene("VictoryScene");
     }
 }
