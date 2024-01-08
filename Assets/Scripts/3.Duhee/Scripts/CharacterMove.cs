@@ -21,11 +21,14 @@ public class CharacterMove : MonoBehaviour
     Animator anim;
     PlayerScore playerScore;
 
+    AudioSource audio;
+
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
         playerScore = GetComponent<PlayerScore>();
+        audio = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -82,6 +85,7 @@ public class CharacterMove : MonoBehaviour
                 GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 2:
                 GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
@@ -90,6 +94,7 @@ public class CharacterMove : MonoBehaviour
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 3:
                 GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
@@ -101,6 +106,7 @@ public class CharacterMove : MonoBehaviour
                 rigidRR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidCC.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
         }
 

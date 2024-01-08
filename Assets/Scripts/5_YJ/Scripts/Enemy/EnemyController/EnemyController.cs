@@ -26,7 +26,6 @@ public class EnemyController : TopDownEnemyController
 protected virtual void Start()
     { 
         gameManager = GameManager.Instance;
-        gameManager.Player = GameObject.FindGameObjectWithTag("Player");
         target = gameManager.Player.transform;
     }
 
