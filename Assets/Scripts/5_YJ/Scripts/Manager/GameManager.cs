@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour
     {
         if (live)
         {
-            alive += Time.deltaTime;
             timeText.text = alive.ToString("N2");
 
             if(alive >= 60f)
@@ -75,8 +74,6 @@ public class GameManager : MonoBehaviour
                 PlayerDie();
             }
         }
-
-
     }
 
     public void gameOver()
@@ -87,17 +84,13 @@ public class GameManager : MonoBehaviour
 
     public void retry()
     {
-        SceneManager.LoadScene("MainScene");
+        alive = Time.deltaTime;
 
-        alive = 0f;
-        timeText.text = alive.ToString("N2");
         live = true;
-
-        Time.timeScale = 1.0f;
         endPanel.SetActive(false);
+
+        SceneManager.LoadScene("MainScene");
     }
-
-
 
     public void PlayerDie()
     {

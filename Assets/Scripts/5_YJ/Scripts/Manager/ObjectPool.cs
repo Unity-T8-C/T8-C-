@@ -12,6 +12,7 @@ public class ObjectPool : MonoBehaviour
     }
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
+    public GameObject poolContainer;
 
     private void Awake()
     {
@@ -24,6 +25,7 @@ public class ObjectPool : MonoBehaviour
                 GameObject obj = Instantiate(pool.prefab);
                 obj.SetActive(false);
                 objectPool.Enqueue(obj);
+                obj.transform.SetParent(poolContainer.transform);
             }
             poolDictionary.Add(pool.tag, objectPool);
         }

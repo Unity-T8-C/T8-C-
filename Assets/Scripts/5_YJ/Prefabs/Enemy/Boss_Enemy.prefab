@@ -594,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6672b9770c0f1d547bea52260f9655d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainSpriteRenderer: {fileID: 0}
+  mainSpriteRenderer: {fileID: 5313682442331209749}
   followRange: 100
   isBoss: 0
   shootRange: 100
