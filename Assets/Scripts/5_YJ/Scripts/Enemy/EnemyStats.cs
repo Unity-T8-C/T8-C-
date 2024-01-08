@@ -17,7 +17,6 @@ public class EnemyStats
 
     public int attackDamage;
     public float attackDelay;
-    public int bossHp;
 
     public EnemySO enemySO;
 }

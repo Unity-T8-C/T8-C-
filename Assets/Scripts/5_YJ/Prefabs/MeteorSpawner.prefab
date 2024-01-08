@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2483337229917298008
 MonoBehaviour:
@@ -48,4 +48,4 @@ MonoBehaviour:
   alertLinePrefab: {fileID: 9138788734654560457, guid: 738d4ce41cc09984ba3dd8bc130043b8, type: 3}
   meteoritePrefab: {fileID: 1720084518233061799, guid: 69ce13d0e26c32846affb2349ddda388, type: 3}
   minSpawnTime: 1
-  maxSpawnTime: 1
+  maxSpawnTime: 3
