@@ -33,7 +33,7 @@
  2. 몬스터가 플레이어를 인지하고 공격합니다.   
  3. 전조 현상으로 공격 반경을 알려준 뒤 운석이 떨어집니다.
     
-    ![image](https://github.com/Unity-T8-C/T8-C-/assets/120788949/e00bd5be-a7e9-4c6b-a0d3-a4b12d16b8e5)
+ ![image](https://github.com/Unity-T8-C/T8-C-/assets/120788949/030bc4c1-908f-4a01-b19b-4d6a70025fe0)
 
 -아이템
  1. 운석에 플레이어가 맞으면 체력이 감소하는 장애물
@@ -58,3 +58,4 @@
 
    ![image](https://github.com/Unity-T8-C/T8-C-/assets/120788949/986a54f7-13a3-4c3b-8eb0-d77e6df3b847)
 
+  60초가 지나면 게임이 종료 됩니다. 
