@@ -32,4 +32,20 @@ public class BossEnemyController : EnemyController
             CallLookEvent(direction);
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Bullet"))
+        {
+            Destroy(collision.gameObject);
+
+            currentHP -= 30;
+            Debug.Log($"{currentHP}");
+        }
+
+        if(currentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

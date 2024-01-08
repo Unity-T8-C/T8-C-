@@ -30,11 +30,6 @@ public class BossEnemyStatsHandler : MonoBehaviour
         {
             CurrentStats.attackDamage = enemySO.isBoss ? enemySO.bossAtk : enemySO.atk;
             CurrentStats.attackDelay = enemySO.isBoss ? enemySO.bossAtkDelay : enemySO.atkDelay;
-
-            if (enemySO.isBoss)
-            {
-                CurrentStats.bossHp = enemySO.bossHp;
-            }
         }
     }
 
