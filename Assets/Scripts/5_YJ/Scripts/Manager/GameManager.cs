@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
-    private ProjectileManager _projectileManager;
-
     public GameObject Player;
 
     public GameObject endPanel;
@@ -14,8 +12,6 @@ public class GameManager : MonoBehaviour
     float alive = 0f;
 
     private bool live;
-
-    private float initialTime;
 
     public static GameManager Instance
     {
@@ -30,10 +26,10 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
-        set
-        {
-            if (_instance == null) _instance = value;
-        }
+        //set
+        //{
+        //    if (_instance == null) _instance = value;
+        //}
     }
 
     private void Awake()
@@ -42,14 +38,29 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(this);
-
-            initialTime = Time.timeScale;
         }
         else
         {
             if (_instance != this) Destroy(this);
         }
+
         live = true;
+
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
+
+        PlayerLife playerLife = Player.GetComponent<PlayerLife>();
+        if (playerLife != null)
+        {
+            playerLife.SetGameManager(this);
+        }
+    }
+
+    void Start()
+    {
+        Time.timeScale = 1.0f;
     }
 
     private void Update()
@@ -57,8 +68,15 @@ public class GameManager : MonoBehaviour
         if (live)
         {
             alive += Time.deltaTime;
-            //timeText.text = alive.ToString("N2");
+            timeText.text = alive.ToString("N2");
+
+            if(alive >= 60f)
+            {
+                PlayerDie();
+            }
         }
+
+
     }
 
     public void gameOver()
@@ -69,30 +87,21 @@ public class GameManager : MonoBehaviour
 
     public void retry()
     {
-        ResetGame();
-        _projectileManager.ResetProjectiles();
         SceneManager.LoadScene("MainScene");
+
+        alive = 0f;
+        timeText.text = alive.ToString("N2");
+        live = true;
+
+        Time.timeScale = 1.0f;
+        endPanel.SetActive(false);
     }
+
+
 
     public void PlayerDie()
     {
         live = false;
         gameOver();
-    }
-
-    private void ResetGame()
-    {
-        Time.timeScale = initialTime;
-        alive = 0.0f;
-        live = true;
-        endPanel.SetActive(false);
-
-        if (Player != null)
-        {
-            if (!Player.activeSelf)
-            {
-                Player.SetActive(true);
-            }
-        }
     }
 }

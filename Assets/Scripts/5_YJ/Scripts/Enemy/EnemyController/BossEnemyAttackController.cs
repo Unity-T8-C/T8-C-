@@ -14,11 +14,13 @@ public class BossEnemyAttackController : MonoBehaviour
     private ProjectileManager _projectileManager;
 
     public bool fxOnDestory = true;
+    PlayerLife playerlife;
 
     private void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        playerlife = FindObjectOfType<PlayerLife>();
     }
 
     private void Update()
@@ -37,12 +39,11 @@ public class BossEnemyAttackController : MonoBehaviour
         _rigidbody.velocity = _direction * _bossData.atkSpeed;
     }
 
-    public void BossInitializeAttack(Vector2 direction, float speed, BossEnemyData bossData, ProjectileManager projectileManager)
+    public void BossInitializeAttack(Vector2 direction, BossEnemyData bossData, ProjectileManager projectileManager)
     {
         _projectileManager = projectileManager;
         _bossData = bossData;
         _direction = direction;
-        _bossData.atkSpeed = speed;
 
         UpdateProjectilSprite();
         _currentDuration = 0;
@@ -63,7 +64,13 @@ public class BossEnemyAttackController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyProjectile();
-            collision.gameObject.SetActive(false);
+
+            if (playerlife != null)
+            {
+                playerlife.TakeDamage();
+            }
+
+            Destroy(collision.gameObject);
             GameManager.Instance.PlayerDie();
         }
     }

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class CharacterMove : MonoBehaviour
 {
@@ -10,7 +9,6 @@ public class CharacterMove : MonoBehaviour
     public float power;
     public float maxShotDelay;
     public float curShotDelay;
-    public int atk = 500;
 
     public bool isTouchTop;
     public bool isTouchBottom;
@@ -21,24 +19,21 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjB;
 
     Animator anim;
+    PlayerScore playerScore;
 
-    private PlayerLife playerLife;
-    public float invincibilityTime = 2f;
-    private bool isInvincible = false;
-    private float invincibilityTimer = 0f;
-    private Vector3 initialPosition;
-
-    void Start()
-    {
-        initialPosition = transform.position;
-        playerLife = GetComponent<PlayerLife>();
-    }
 
     private void Awake()
     {
         anim = GetComponent<Animator>();
+        playerScore = GetComponent<PlayerScore>();
     }
-    // Update is called once per frame
+
+    void Start()
+    {
+
+    }
+
+
     void Update()
     {
         Move();
@@ -121,81 +116,70 @@ public class CharacterMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
-            switch (collision.gameObject.name)
-            {
-                case "Top":
-                    isTouchTop = true;
-                    break;
-
-                case "Bottom":
-                    isTouchBottom = true;
-                    break;
-
-                case "Right":
-                    isTouchRight = true;
-                    break;
-
-                case "Left":
-                    isTouchLeft = true;
-                    break;
-            }
+        {
+            HandleBorderCollision(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            HandleEnemyCollision(collision.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
-            switch (collision.gameObject.name)
+        {
+            OnTriggerExit2D(collision.gameObject);
+        }
+    }
+
+    private void HandleBorderCollision(GameObject borderObject)
+    {
+        switch (borderObject.name)
+        {
+            case "Top":
+                isTouchTop = true;
+                break;
+            case "Bottom":
+                isTouchBottom = true;
+                break;
+            case "Right":
+                isTouchRight = true;
+                break;
+            case "Left":
+                isTouchLeft = true;
+                break;
+        }
+    }
+
+    private void HandleEnemyCollision(GameObject enemyObject)
+    {
+        if (playerScore != null)
+        {
+            if (enemyObject.tag == "Bullet")
             {
-                case "Top":
-                    isTouchTop = false;
-                    break;
-
-                case "Bottom":
-                    isTouchBottom = false;
-                    break;
-
-                case "Right":
-                    isTouchRight = false;
-                    break;
-
-                case "Left":
-                    isTouchLeft = false;
-                    break;
+                playerScore.IncreaseScore();
             }
-    }
-
-    void GameOver()
-    {
-        isInvincible = true;
-        invincibilityTimer = invincibilityTime;
-
-        if (playerLife.currentLives > 0)
-        {
-            transform.position = initialPosition;
-
-            StartCoroutine(EnablePlayerControls());
-            playerLife.TakeDamage();
         }
-        else
+        Destroy(enemyObject);
+    }
+
+    private void OnTriggerExit2D(GameObject borderObject)
+    {
+        switch (borderObject.name)
         {
-            // 게임 종료 로직 추가
-            // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            case "Top":
+                isTouchTop = false;
+                break;
+            case "Bottom":
+                isTouchBottom = false;
+                break;
+            case "Right":
+                isTouchRight = false;
+                break;
+            case "Left":
+                isTouchLeft = false;
+                break;
         }
-    }
-    IEnumerator EnablePlayerControls()
-    {
-        yield return new WaitForSeconds(3f);
-
-        isInvincible = false;
-        invincibilityTimer = 0f;
-        initialPosition = transform.position;
-
-        //enabled = true;
-        gameObject.SetActive(true);
-    }
-
-    public void InitializePlayer()
-    {
-        transform.position = initialPosition;
     }
 }
