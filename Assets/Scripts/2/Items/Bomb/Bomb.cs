@@ -8,7 +8,7 @@ public class BombBoom : MonoBehaviour
     [SerializeField]
     private AudioClip boomAudio;            // 사운드 파일
     [SerializeField]
-    private float boomDelay = 0.5f; // 폭탄 이동 시간 (0.5초 후 폭발)
+    private float boomDelay = 2f; // 폭탄 이동 시간 (0.5초 후 폭발)
     private Animator animator;
     private AudioSource audioSource;
 
