@@ -43,11 +43,11 @@ public class ProjectileManager : MonoBehaviour
         objectPool = GetComponent<ObjectPool>();
     }
 
-    public void ShootBullet(Vector2 startPostiion, Vector2 direction, RangedEnemyData rangedData)
+    public void ShootBullet(Vector2 startPosition, Vector2 direction, RangedEnemyData rangedData)
     {
         GameObject obj = objectPool.SpawnFromPool(rangedData.projectileNameTag);
 
-        obj.transform.position = startPostiion;
+        obj.transform.position = startPosition;
         RangedAttackController attackController = obj.GetComponent<RangedAttackController>();
         attackController.InitializeAttack(direction, rangedData, this);
 
@@ -55,52 +55,52 @@ public class ProjectileManager : MonoBehaviour
         obj.SetActive(true);
     }
 
-    public void BossEnemyAttacking(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
+    public void BossEnemyAttacking(int level, Vector2 startPosition, Vector2 direction, BossEnemyData bosssData)
     {
-        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag);
+        if (level < 1 || level > bosssData.projectileNameTags.Length)
+        {
+            return;
+        }
 
-        obj.transform.position = startPostiion;
+        string projectileNameTag = bosssData.projectileNameTags[level - 1];
+        GameObject obj = objectPool.SpawnFromPool(projectileNameTag);
+
+        obj.transform.position = startPosition;
         BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
         attackController.BossInitializeAttack(direction, bosssData, this);
 
-        Debug.Log("ShootBossBullet");
+        Debug.Log("ShootBossBulletLevel1" + level);
         obj.SetActive(true);
     }
 
-    public void BossEnemyAttackingLevel2(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
+    public void BossEnemySpawn(Transform startPosition, BossEnemyData bossData)
     {
-        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag2);
+        if (startPosition == null)
+        {
+            Debug.LogError("Spawn position is null.");
+            return;
+        }
 
-        obj.transform.position = startPostiion;
-        BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
-        attackController.BossInitializeAttack(direction, bosssData, this);
-
-        Debug.Log("ShootBossBulletLevel2");
-        obj.SetActive(true);
-    }
-
-    public void BossEnemyAttackingLevel3(Vector2 startPostiion, Vector2 direction, BossEnemyData bosssData)
-    {
-        GameObject obj = objectPool.SpawnFromPool(bosssData.projectileNameTag3);
-
-        obj.transform.position = startPostiion;
-        BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
-        attackController.BossInitializeAttack(direction, bosssData, this);
-
-        Debug.Log("ShootBossBulletLevel3");
-        obj.SetActive(true);
-    }
-
-    public void BossEnemySpawn(Transform startPostiion, BossEnemyData bossData)
-    {
         GameObject obj = objectPool.SpawnFromPool(bossData.spawnEnemyTag);
 
-        obj.transform.position = startPostiion.position;
+        if (obj == null)
+        {
+            Debug.LogError("Failed to spawn enemy from the pool.");
+            return;
+        }
+
+        obj.transform.position = startPosition.position;
 
         ContactEnemyController enemyController = obj.GetComponent<ContactEnemyController>();
-        enemyController.EnemySpawn(bossData, this);
-
-        Debug.Log("SpawnEnemy");
-        obj.SetActive(true);
+        if (enemyController != null)
+        {
+            enemyController.EnemySpawn(bossData, this);
+            Debug.Log("SpawnEnemy");
+            obj.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("ContactEnemyController not found on spawned object.");
+        }
     }
 }

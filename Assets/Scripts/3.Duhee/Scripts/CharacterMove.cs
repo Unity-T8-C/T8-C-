@@ -19,18 +19,24 @@ public class CharacterMove : MonoBehaviour
     public GameObject bulletObjB;
 
     Animator anim;
-   
-    
-    void Start()
-    {
-        
-    }
+    PlayerScore playerScore;
+
+    AudioSource audio;
+
 
     private void Awake()
     {
-        anim = GetComponent<Animator>();    
+        anim = GetComponent<Animator>();
+        playerScore = GetComponent<PlayerScore>();
+        audio = GetComponent<AudioSource>();
     }
-    // Update is called once per frame
+
+    void Start()
+    {
+
+    }
+
+
     void Update()
     {
         Move();
@@ -39,7 +45,7 @@ public class CharacterMove : MonoBehaviour
     }
 
 
-   void Move()
+    void Move()
     {
         float h = Input.GetAxisRaw("Horizontal");
         if ((isTouchRight && h == 1) || (isTouchLeft && h == -1))
@@ -60,7 +66,7 @@ public class CharacterMove : MonoBehaviour
         transform.position = PlayerPos + MovePos;
 
         if (Input.GetButtonDown("Horizontal") || Input.GetButtonUp("Horizontal"))
-            {
+        {
             anim.SetInteger("Input", (int)h);
         }
     }
@@ -72,21 +78,23 @@ public class CharacterMove : MonoBehaviour
 
         if (curShotDelay < maxShotDelay)
             return;
-        
-        switch(power)
+
+        switch (power)
         {
             case 1:
                 GameObject bullet = Instantiate(bulletObjA, transform.position, transform.rotation);
                 Rigidbody2D rigid = bullet.GetComponent<Rigidbody2D>();
                 rigid.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 2:
-                GameObject bulletR = Instantiate(bulletObjA, transform.position+Vector3.right*0.1f, transform.rotation);
+                GameObject bulletR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.1f, transform.rotation);
                 GameObject bulletL = Instantiate(bulletObjA, transform.position + Vector3.left * 0.1f, transform.rotation);
                 Rigidbody2D rigidR = bulletR.GetComponent<Rigidbody2D>();
                 Rigidbody2D rigidL = bulletL.GetComponent<Rigidbody2D>();
                 rigidR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
             case 3:
                 GameObject bulletRR = Instantiate(bulletObjA, transform.position + Vector3.right * 0.2f, transform.rotation);
@@ -98,9 +106,10 @@ public class CharacterMove : MonoBehaviour
                 rigidRR.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidCC.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
                 rigidLL.AddForce(Vector2.up * 10, ForceMode2D.Impulse);
+                audio.Play();
                 break;
         }
-        
+
 
         curShotDelay = 0;
     }
@@ -113,46 +122,70 @@ public class CharacterMove : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
-            switch (collision.gameObject.name)
-            {
-                case "Top":
-                    isTouchTop = true;
-                    break;
-
-                case "Bottom":
-                    isTouchBottom = true;
-                    break;
-
-                case "Right":
-                    isTouchRight = true;
-                    break;
-
-                case "Left":
-                    isTouchLeft = true;
-                    break;
-            }
+        {
+            HandleBorderCollision(collision.gameObject);
+        }
+        else if (collision.gameObject.tag == "Enemy")
+        {
+            HandleEnemyCollision(collision.gameObject);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Border")
-            switch (collision.gameObject.name)
+        {
+            OnTriggerExit2D(collision.gameObject);
+        }
+    }
+
+    private void HandleBorderCollision(GameObject borderObject)
+    {
+        switch (borderObject.name)
+        {
+            case "Top":
+                isTouchTop = true;
+                break;
+            case "Bottom":
+                isTouchBottom = true;
+                break;
+            case "Right":
+                isTouchRight = true;
+                break;
+            case "Left":
+                isTouchLeft = true;
+                break;
+        }
+    }
+
+    private void HandleEnemyCollision(GameObject enemyObject)
+    {
+        if (playerScore != null)
+        {
+            if (enemyObject.tag == "Bullet")
             {
-                case "Top":
-                    isTouchTop = false;
-                    break;
-
-                case "Bottom":
-                    isTouchBottom = false;
-                    break;
-
-                case "Right":
-                    isTouchRight = false;
-                    break;
-
-                case "Left":
-                    isTouchLeft = false;
-                    break;
+                playerScore.IncreaseScore();
             }
+        }
+        Destroy(enemyObject);
+    }
+
+    private void OnTriggerExit2D(GameObject borderObject)
+    {
+        switch (borderObject.name)
+        {
+            case "Top":
+                isTouchTop = false;
+                break;
+            case "Bottom":
+                isTouchBottom = false;
+                break;
+            case "Right":
+                isTouchRight = false;
+                break;
+            case "Left":
+                isTouchLeft = false;
+                break;
+        }
     }
 }

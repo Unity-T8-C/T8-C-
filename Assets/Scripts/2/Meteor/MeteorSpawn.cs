@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
-public class MeteoriteSpawner : MonoBehaviour
+public class MeteoriteSpawn : MonoBehaviour
 {
     [SerializeField]
     private StageData stageData;

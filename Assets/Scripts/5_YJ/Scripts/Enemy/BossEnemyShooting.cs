@@ -1,3 +1,6 @@
+using System.Collections;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
 public class BossEnemyShooting : MonoBehaviour
@@ -8,6 +11,15 @@ public class BossEnemyShooting : MonoBehaviour
     [SerializeField] private Transform projectileAttackPosLevel3;
     [SerializeField] protected Transform enemySpawnPos;
     [SerializeField] protected Transform enemySpawnPos2;
+
+    [SerializeField]
+    private GameObject alertLinePrefab;
+    [SerializeField]
+    private GameObject laserPrefab;
+    [SerializeField] private Transform laserPos;
+
+    private float laserDelay = 7.0f;
+    private bool laserDelayCheck;
 
     private Vector2 _aimDirection = Vector2.right;
     private ProjectileManager _projectileManager;
@@ -24,6 +36,7 @@ public class BossEnemyShooting : MonoBehaviour
         _bossData = new BossEnemyData();
 
         spawnDelay = true;
+        laserDelayCheck = true;
     }
 
     private void Start()
@@ -50,22 +63,52 @@ public class BossEnemyShooting : MonoBehaviour
         for (int i = 0; i < numberOfProjectilesPerShot; i++)
         {
             float angle = minAngle + projectilesAngleSpace * i;
+            float speed = bossData.atkSpeed;
+
             float randomSpread = Random.Range(-bossData.spread, bossData.spread);
             angle += randomSpread;
             CreateProjectile(bossData, angle);
             Debug.Log("OnAttack");
+
+            if (stats.CurrentStats.maxHp <= 700)
+            {
+                bossData.atkDelay = 3.0f;
+                speed = 5.0f;
+                numberOfProjectilesPerShot = 2;
+                CreateProjectile(bossData, angle);
+            }
+            else if (stats.CurrentStats.maxHp <= 500)
+            {
+                bossData.atkDelay = 2.0f;
+                speed = 7.0f;
+                projectilesAngleSpace = Random.Range(0, 50);
+                numberOfProjectilesPerShot = 4;
+                CreateProjectile(bossData, angle);
+            }
+            if (stats.CurrentStats.maxHp <= 300)
+            {
+                bossData.atkDelay = 0.5f;
+                speed = 3.0f;
+                projectilesAngleSpace = Random.Range(0, 120);
+                numberOfProjectilesPerShot = 8;
+                CreateProjectile(bossData, angle);
+            }
+        }
+
+        if (stats.CurrentStats.maxHp <= 250 && laserDelayCheck)
+        {
+            StartCoroutine("LaserAttack");
         }
     }
 
     private void CreateProjectile(BossEnemyData bossData, float angle)
     {
-        Debug.Log("CreateProjectile");
-        _projectileManager.BossEnemyAttacking(projectileAttackPosLevel1.position,
+        _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
                                        Rotate(_aimDirection, angle), bossData);
 
         if (stats.CurrentStats.maxHp <= 500)
         {
-            _projectileManager.BossEnemyAttackingLevel2(projectileAttackPosLevel2.position,
+            _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
         }
 
@@ -78,11 +121,11 @@ public class BossEnemyShooting : MonoBehaviour
 
         if (stats.CurrentStats.maxHp <= 100)
         {
-            _projectileManager.BossEnemyAttackingLevel3(projectileAttackPosLevel3.position,
+            _projectileManager.BossEnemyAttacking(3, projectileAttackPosLevel3.position,
                                        Rotate(_aimDirection, angle), bossData);
-            _projectileManager.BossEnemySpawn(enemySpawnPos2, bossData);
         }
     }
+
 
     private static Vector2 Rotate(Vector2 v, float degree)
     {
@@ -98,5 +141,27 @@ public class BossEnemyShooting : MonoBehaviour
             spawnDelay = true;
         }
         Debug.Log("근접 공격체 소환");
+    }
+
+    private IEnumerator LaserAttack()
+    {
+        while (true)
+        {
+            laserDelayCheck = false;
+
+            GameObject laserLine = Instantiate(alertLinePrefab, new Vector3(-0.17f, 0, 0), Quaternion.identity);
+
+            yield return new WaitForSeconds(3.0f);
+
+            Destroy(laserLine);
+
+            laserPrefab.SetActive(true);
+
+            yield return new WaitForSeconds(1.0f);
+            laserPrefab.SetActive(false);
+
+            yield return new WaitForSeconds(laserDelay);
+            laserDelayCheck = true;
+        }
     }
 }

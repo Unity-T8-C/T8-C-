@@ -7,6 +7,10 @@ TagManager:
   - Enemy
   - item
   - Projectile
+  - Meteor
+  - Bullet
+  - Boss
+  - UI
   layers:
   - Default
   - TransparentFX

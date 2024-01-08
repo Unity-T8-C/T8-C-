@@ -31,6 +31,8 @@ public class ContactEnemyController : EnemyController
         if (collision.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
+            DestroyProjectile();
+            GameManager.Instance.PlayerDie();
         }
     }
 

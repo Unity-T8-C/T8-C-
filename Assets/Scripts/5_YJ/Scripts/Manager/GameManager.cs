@@ -7,9 +7,11 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public GameObject Player;
 
-    public GameObject EndPanel;
+    public GameObject endPanel;
     public Text timeText;   //시간
-    float limit = 5f;
+    float alive = 60f;
+
+    private bool live;
 
     public static GameManager Instance
     {
@@ -24,10 +26,10 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
-        set
-        {
-            if (_instance == null) _instance = value;
-        }
+        //set
+        //{
+        //    if (_instance == null) _instance = value;
+        //}
     }
 
     private void Awake()
@@ -41,34 +43,59 @@ public class GameManager : MonoBehaviour
         {
             if (_instance != this) Destroy(this);
         }
-    }
 
-    private void Start()
-    {
-        initGame();
-    }
+        live = true;
 
-    private void Update()   //시간
-    {
-        limit -= Time.deltaTime;
-        if (limit < 0)
+        if (Player == null)
         {
-            Time.timeScale = 0.0f;
-            EndPanel.SetActive(true);
-            limit = 0.0f;
+            Player = GameObject.FindWithTag("Player");
         }
 
-        timeText.text = limit.ToString("N2");
+        PlayerLife playerLife = Player.GetComponent<PlayerLife>();
+        if (playerLife != null)
+        {
+            playerLife.SetGameManager(this);
+        }
+    }
+
+    void Start()
+    {
+        Time.timeScale = 1.0f;
+    }
+
+    private void Update()
+    {
+        if (live)
+        {
+            alive -= Time.deltaTime;
+            timeText.text = alive.ToString("N2");
+
+            if(alive >= 60f)
+            {
+                PlayerDie();
+            }
+        }
+    }
+
+    public void gameOver()
+    {
+        Time.timeScale = 0.0f;
+        endPanel.SetActive(true);
     }
 
     public void retry()
     {
-        SceneManager.LoadScene("KHJScene");
+        alive = Time.deltaTime;
+
+        live = true;
+        endPanel.SetActive(false);
+
+        SceneManager.LoadScene("MainScene");
     }
 
-    void initGame()
+    public void PlayerDie()
     {
-        Time.timeScale = 1.0f;
-        limit = 5f;
+        live = false;
+        gameOver();
     }
 }

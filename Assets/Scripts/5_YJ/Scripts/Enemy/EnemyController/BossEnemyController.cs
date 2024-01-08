@@ -31,6 +31,5 @@ public class BossEnemyController : EnemyController
         {
             CallLookEvent(direction);
         }
-        Rotate(direction);
     }
 }
