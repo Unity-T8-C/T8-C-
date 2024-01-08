@@ -29,7 +29,7 @@ MonoBehaviour:
   spawnEnemyTag: EnemySpawn
   duration: 5
   spread: 20
-  numberofProjectilesPerShot: 2
+  numberofProjectilesPerShot: 1
   multipleProjectilesAngel: 1
   atkSpeed: 10
   size: 1

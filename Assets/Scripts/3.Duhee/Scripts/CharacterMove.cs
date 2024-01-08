@@ -9,6 +9,7 @@ public class CharacterMove : MonoBehaviour
     public float power;
     public float maxShotDelay;
     public float curShotDelay;
+    public int atk = 30;
 
     public bool isTouchTop;
     public bool isTouchBottom;

@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject endPanel;
     public Text timeText;   //½Ã°£
-    float alive = 0f;
+    float alive = 60f;
 
     private bool live;
 
@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
     {
         if (live)
         {
+            alive -= Time.deltaTime;
             timeText.text = alive.ToString("N2");
 
             if(alive >= 60f)
