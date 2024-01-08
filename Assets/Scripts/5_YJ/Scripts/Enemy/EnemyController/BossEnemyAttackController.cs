@@ -14,11 +14,13 @@ public class BossEnemyAttackController : MonoBehaviour
     private ProjectileManager _projectileManager;
 
     public bool fxOnDestory = true;
+    PlayerLife playerlife;
 
     private void Awake()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
+        playerlife = FindObjectOfType<PlayerLife>();
     }
 
     private void Update()
@@ -62,6 +64,12 @@ public class BossEnemyAttackController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyProjectile();
+
+            if (playerlife != null)
+            {
+                playerlife.TakeDamage();
+            }
+
             Destroy(collision.gameObject);
             GameManager.Instance.PlayerDie();
         }
