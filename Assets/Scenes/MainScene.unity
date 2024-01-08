@@ -135,6 +135,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4077643034133366778, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
+      propertyPath: pools.Array.data[1].size
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077643034133366778, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
+      propertyPath: pools.Array.data[2].size
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 4077643034133366778, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
+      propertyPath: pools.Array.data[3].size
+      value: 300
+      objectReference: {fileID: 0}
     - target: {fileID: 4096610670127241338, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1

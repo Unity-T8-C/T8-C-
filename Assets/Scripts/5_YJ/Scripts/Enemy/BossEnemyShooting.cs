@@ -28,6 +28,7 @@ public class BossEnemyShooting : MonoBehaviour
     protected BossEnemyData _bossData;
 
     public bool spawnDelay;
+    private bool isDead;
 
     private void Awake()
     {
@@ -57,45 +58,45 @@ public class BossEnemyShooting : MonoBehaviour
 
         float projectilesAngleSpace = bossData.multipleProjectilesAngel;
         int numberOfProjectilesPerShot = bossData.numberofProjectilesPerShot;
+        int currentHP = Controller.currentHP;
 
         float minAngle = -(numberOfProjectilesPerShot / 2f) * projectilesAngleSpace + 0.5f * bossData.multipleProjectilesAngel;
 
         for (int i = 0; i < numberOfProjectilesPerShot; i++)
         {
             float angle = minAngle + projectilesAngleSpace * i;
-            float speed = bossData.atkSpeed;
 
             float randomSpread = Random.Range(-bossData.spread, bossData.spread);
             angle += randomSpread;
             CreateProjectile(bossData, angle);
             Debug.Log("OnAttack");
 
-            if (stats.CurrentStats.maxHp <= 700)
+            if (currentHP <= 700 && currentHP > 500)
             {
                 bossData.atkDelay = 3.0f;
-                speed = 5.0f;
+                bossData.atkSpeed = 5.0f;
                 numberOfProjectilesPerShot = 2;
                 CreateProjectile(bossData, angle);
             }
-            else if (stats.CurrentStats.maxHp <= 500)
+            else if (currentHP <= 500 && currentHP > 300)
             {
                 bossData.atkDelay = 2.0f;
-                speed = 7.0f;
+                bossData.atkSpeed = 7.0f;
                 projectilesAngleSpace = Random.Range(0, 50);
                 numberOfProjectilesPerShot = 4;
                 CreateProjectile(bossData, angle);
             }
-            if (stats.CurrentStats.maxHp <= 300)
+            else if(currentHP <= 300)
             {
                 bossData.atkDelay = 0.5f;
-                speed = 3.0f;
+                bossData.atkSpeed = 2.5f;
                 projectilesAngleSpace = Random.Range(0, 120);
                 numberOfProjectilesPerShot = 8;
                 CreateProjectile(bossData, angle);
             }
         }
 
-        if (stats.CurrentStats.maxHp <= 250 && laserDelayCheck)
+        if (currentHP <= 250 && laserDelayCheck)
         {
             StartCoroutine("LaserAttack");
         }
@@ -103,23 +104,25 @@ public class BossEnemyShooting : MonoBehaviour
 
     private void CreateProjectile(BossEnemyData bossData, float angle)
     {
+        int currentHP = Controller.currentHP;
+
         _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
                                        Rotate(_aimDirection, angle), bossData);
 
-        if (stats.CurrentStats.maxHp <= 500)
+        if (currentHP <= 500)
         {
             _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
         }
 
-        if (stats.CurrentStats.maxHp <= 300 && spawnDelay)
+        if (currentHP <= 300 && spawnDelay)
         {
             _bossData = bossData;
             Invoke("SpawnEnemy", 5.0f);
             spawnDelay = false;
         }
 
-        if (stats.CurrentStats.maxHp <= 100)
+        if (currentHP <= 100)
         {
             _projectileManager.BossEnemyAttacking(3, projectileAttackPosLevel3.position,
                                        Rotate(_aimDirection, angle), bossData);
@@ -163,5 +166,11 @@ public class BossEnemyShooting : MonoBehaviour
             yield return new WaitForSeconds(laserDelay);
             laserDelayCheck = true;
         }
+    }
+
+    public void IsDead()
+    {
+        isDead = true;
+        Destroy(gameObject);
     }
 }
