@@ -11,6 +11,7 @@ public class SceneChange : MonoBehaviour
 
     public void StartScenesChange()
     {
+        GameManager.Instance.endPanel.SetActive(false);
         SceneManager.LoadScene("StartScene");
     }
 }
