@@ -26,10 +26,10 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
-        set
-        {
-            if (_instance == null) _instance = value;
-        }
+        //set
+        //{
+        //    if (_instance == null) _instance = value;
+        //}
     }
 
     private void Awake()
@@ -45,6 +45,17 @@ public class GameManager : MonoBehaviour
         }
 
         live = true;
+
+        if (Player == null)
+        {
+            Player = GameObject.FindWithTag("Player");
+        }
+
+        PlayerLife playerLife = Player.GetComponent<PlayerLife>();
+        if (playerLife != null)
+        {
+            playerLife.SetGameManager(this);
+        }
     }
 
     private void Update()

@@ -4555,16 +4555,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d610f3483b353644980615b7b72f264c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
-  power: 0
-  maxShotDelay: 0
+  speed: 5
+  power: 1
+  maxShotDelay: 0.2
   curShotDelay: 0
   isTouchTop: 0
   isTouchBottom: 0
   isTouchRight: 0
   isTouchLeft: 0
-  bulletObjA: {fileID: 0}
-  bulletObjB: {fileID: 0}
+  bulletObjA: {fileID: 3200767539728754896, guid: ab47eb9653b49674bb79518582ac2fd7, type: 3}
+  bulletObjB: {fileID: 3200767539728754896, guid: aa344364f8add114b83d6f9c4eb04923, type: 3}
+  invincibilityTime: 2
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
