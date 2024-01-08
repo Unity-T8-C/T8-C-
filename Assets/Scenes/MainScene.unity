@@ -153,11 +153,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096610670127241338, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 200
+      value: 250
       objectReference: {fileID: 0}
     - target: {fileID: 4096610670127241338, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 100
+      value: 120
       objectReference: {fileID: 0}
     - target: {fileID: 4096610670127241338, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -165,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4096610670127241338, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -220
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 6324163552237658320, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_UiScaleMode
@@ -231,10 +231,18 @@ PrefabInstance:
       propertyPath: m_FontData.m_Alignment
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 6982417825110308248, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8402939123781180464, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: Player
       value: 
       objectReference: {fileID: 1707341664}
+    - target: {fileID: 8921140258381493286, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9033036870033448676, guid: edb806b7dd3c6f744bb510e3b79c4776, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
