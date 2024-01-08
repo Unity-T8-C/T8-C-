@@ -11,7 +11,7 @@ public class Meteorite : MonoBehaviour
         
         if (collision.CompareTag("Player"))
         {           
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             OnDie();
             GameManager.Instance.PlayerDie();
         }

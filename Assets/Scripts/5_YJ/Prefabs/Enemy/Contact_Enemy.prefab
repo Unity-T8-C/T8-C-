@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 6371621651547787227}
   - component: {fileID: 1291391163069437014}
   - component: {fileID: 2182759057523334855}
+  - component: {fileID: 7375151841367855815}
   m_Layer: 21
   m_Name: Contact_Enemy
   m_TagString: Enemy
@@ -256,3 +257,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemPrefabs:
   - {fileID: 2257572470644336511, guid: 839e661f29d4a3e499a54486c5c8ff81, type: 3}
+--- !u!114 &7375151841367855815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779978215455568733}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b9e225daede314ab3abe7d35cd1c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

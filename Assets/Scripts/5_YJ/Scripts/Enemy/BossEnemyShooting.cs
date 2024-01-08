@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
@@ -62,10 +63,36 @@ public class BossEnemyShooting : MonoBehaviour
         for (int i = 0; i < numberOfProjectilesPerShot; i++)
         {
             float angle = minAngle + projectilesAngleSpace * i;
+            float speed = bossData.atkSpeed;
+
             float randomSpread = Random.Range(-bossData.spread, bossData.spread);
             angle += randomSpread;
-            CreateProjectile(bossData, angle);
-            Debug.Log("OnAttack");
+
+            CreateProjectile(bossData, angle, speed);
+
+            if (stats.CurrentStats.maxHp <= 700)
+            {
+                bossData.atkDelay = 3.0f;
+                speed = 5.0f;
+                numberOfProjectilesPerShot = 2;
+                CreateProjectile(bossData, angle, speed);
+            }
+            else if (stats.CurrentStats.maxHp <= 500)
+            {
+                bossData.atkDelay = 2.0f;
+                speed = 7.0f;
+                projectilesAngleSpace = Random.Range(0, 50);
+                numberOfProjectilesPerShot = 4;
+                CreateProjectile(bossData, angle, speed);
+            }
+            if (stats.CurrentStats.maxHp <= 300)
+            {
+                bossData.atkDelay = 0.5f;
+                speed = 3.0f;
+                projectilesAngleSpace = Random.Range(0, 120);
+                numberOfProjectilesPerShot = 8;
+                CreateProjectile(bossData, angle, speed);
+            }
         }
 
         if (stats.CurrentStats.maxHp <= 250 && laserDelayCheck)
@@ -74,16 +101,15 @@ public class BossEnemyShooting : MonoBehaviour
         }
     }
 
-    private void CreateProjectile(BossEnemyData bossData, float angle)
+    private void CreateProjectile(BossEnemyData bossData, float angle, float speed)
     {
-        Debug.Log("CreateProjectile");
         _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
-                                       Rotate(_aimDirection, angle), bossData);
+                                       Rotate(_aimDirection, angle), bossData, speed);
 
         if (stats.CurrentStats.maxHp <= 500)
         {
             _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
-                                       Rotate(_aimDirection, angle), bossData);
+                                       Rotate(_aimDirection, angle), bossData, speed);
         }
 
         if (stats.CurrentStats.maxHp <= 300 && spawnDelay)
@@ -96,8 +122,7 @@ public class BossEnemyShooting : MonoBehaviour
         if (stats.CurrentStats.maxHp <= 100)
         {
             _projectileManager.BossEnemyAttacking(3, projectileAttackPosLevel3.position,
-                                       Rotate(_aimDirection, angle), bossData);
-            _projectileManager.BossEnemySpawn(enemySpawnPos2, bossData);
+                                       Rotate(_aimDirection, angle), bossData, speed);
         }
     }
 
@@ -113,6 +138,10 @@ public class BossEnemyShooting : MonoBehaviour
             _projectileManager.BossEnemySpawn(enemySpawnPos, _bossData);
             _bossData = null;
             spawnDelay = true;
+            if(stats.CurrentStats.maxHp <= 200)
+            {
+                _projectileManager.BossEnemySpawn(enemySpawnPos2, _bossData);
+            }
         }
         Debug.Log("근접 공격체 소환");
     }

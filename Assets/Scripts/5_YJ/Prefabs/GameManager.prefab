@@ -31,7 +31,7 @@ Transform:
   m_Children:
   - {fileID: 5993754757699109235}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &8402939123781180464
 MonoBehaviour:
@@ -108,16 +108,16 @@ MonoBehaviour:
   pools:
   - tag: Boll
     prefab: {fileID: 5449256170085169142, guid: 98f86bbf929c4f24da381f21d67e82e8, type: 3}
-    size: 10
+    size: 20
   - tag: BossProjetile1
     prefab: {fileID: 3252774086257079424, guid: aac4e6d9f9c746c49a01da6f25ef2df1, type: 3}
-    size: 5
+    size: 30
   - tag: BossProjetile2
     prefab: {fileID: 3021810433802780316, guid: 384787ec9e2cc634a9d447b273018726, type: 3}
-    size: 5
+    size: 30
   - tag: BossProjetile3
     prefab: {fileID: 5740593633451968765, guid: e682876d0d0f88c408df08b033afa29f, type: 3}
-    size: 5
+    size: 30
   - tag: EnemySpawn
     prefab: {fileID: 4779978215455568733, guid: 17a4a52ce103d5a419e5ddc5a3052e45, type: 3}
     size: 8

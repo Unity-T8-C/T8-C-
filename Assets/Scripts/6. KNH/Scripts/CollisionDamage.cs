@@ -35,6 +35,7 @@ public class CollisionDamage : MonoBehaviour
 
     private void Die()
     {
-            Destroy(gameObject);
+        Destroy(gameObject);
     }
+
 }

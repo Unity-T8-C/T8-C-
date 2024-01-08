@@ -25,17 +25,6 @@ public class ContactEnemyController : EnemyController
         Rotate(_direction);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // player 와 부딪혔을 때 어떻게 처리 할 것인지 ( HP )
-        if (collision.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-            DestroyProjectile();
-            GameManager.Instance.PlayerDie();
-        }
-    }
-
     private void HpChange()
     {
         EnemySO enemySO = Stats.CurrentStats.enemySO;

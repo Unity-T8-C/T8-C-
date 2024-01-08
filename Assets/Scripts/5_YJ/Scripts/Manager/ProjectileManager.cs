@@ -55,7 +55,7 @@ public class ProjectileManager : MonoBehaviour
         obj.SetActive(true);
     }
 
-    public void BossEnemyAttacking(int level, Vector2 startPosition, Vector2 direction, BossEnemyData bosssData)
+    public void BossEnemyAttacking(int level, Vector2 startPosition, Vector2 direction, BossEnemyData bosssData, float speed)
     {
         if (level < 1 || level > bosssData.projectileNameTags.Length)
         {
@@ -67,9 +67,8 @@ public class ProjectileManager : MonoBehaviour
 
         obj.transform.position = startPosition;
         BossEnemyAttackController attackController = obj.GetComponent<BossEnemyAttackController>();
-        attackController.BossInitializeAttack(direction, bosssData, this);
+        attackController.BossInitializeAttack(direction, speed, bosssData, this);
 
-        Debug.Log("ShootBossBulletLevel1" + level);
         obj.SetActive(true);
     }
 
@@ -77,7 +76,6 @@ public class ProjectileManager : MonoBehaviour
     {
         if (startPosition == null)
         {
-            Debug.LogError("Spawn position is null.");
             return;
         }
 
@@ -85,7 +83,6 @@ public class ProjectileManager : MonoBehaviour
 
         if (obj == null)
         {
-            Debug.LogError("Failed to spawn enemy from the pool.");
             return;
         }
 
@@ -98,9 +95,15 @@ public class ProjectileManager : MonoBehaviour
             Debug.Log("SpawnEnemy");
             obj.SetActive(true);
         }
-        else
+    }
+
+    public void ResetProjectiles()
+    {
+        GameObject[] activeProjectiles = GameObject.FindGameObjectsWithTag("Projectile");
+
+        foreach (GameObject projectile in activeProjectiles)
         {
-            Debug.LogError("ContactEnemyController not found on spawned object.");
+            projectile.SetActive(false);
         }
     }
 }

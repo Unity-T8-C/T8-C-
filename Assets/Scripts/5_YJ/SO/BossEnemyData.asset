@@ -27,9 +27,9 @@ MonoBehaviour:
   - BossProjetile2
   - BossProjetile3
   spawnEnemyTag: EnemySpawn
-  duration: 5
+  duration: 8
   spread: 20
-  numberofProjectilesPerShot: 2
+  numberofProjectilesPerShot: 1
   multipleProjectilesAngel: 1
-  atkSpeed: 10
+  atkSpeed: 4
   size: 1

@@ -13,19 +13,10 @@ public class EnemyController : TopDownEnemyController
 
     [SerializeField] protected bool isBoss;
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // player 와 부딪혔을 때 어떻게 처리 할 것인지
-        if (collision.CompareTag("Player"))
-        {
-            Destroy(collision.gameObject);
-        }
-    }
-
-protected virtual void Start()
+    protected virtual void Start()
     { 
         gameManager = GameManager.Instance;
+        gameManager.Player = GameObject.FindGameObjectWithTag("Player");
         target = gameManager.Player.transform;
     }
 

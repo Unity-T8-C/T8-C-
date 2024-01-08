@@ -9,7 +9,7 @@ public class ItemSpawn : MonoBehaviour
     {
         if (collision.CompareTag("Bullet"))
         {
-            OnDie();
+            //OnDie();
         }
     }
 
@@ -17,7 +17,7 @@ public class ItemSpawn : MonoBehaviour
     public void OnDie()
     {       
         SpawnItem();
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
     
     private void SpawnItem()

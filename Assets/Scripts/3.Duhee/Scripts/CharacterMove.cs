@@ -10,6 +10,7 @@ public class CharacterMove : MonoBehaviour
     public float power;
     public float maxShotDelay;
     public float curShotDelay;
+    public int atk = 500;
 
     public bool isTouchTop;
     public bool isTouchBottom;
@@ -191,5 +192,10 @@ public class CharacterMove : MonoBehaviour
 
         //enabled = true;
         gameObject.SetActive(true);
+    }
+
+    public void InitializePlayer()
+    {
+        transform.position = initialPosition;
     }
 }

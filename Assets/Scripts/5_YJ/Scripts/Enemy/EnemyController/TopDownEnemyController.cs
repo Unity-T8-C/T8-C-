@@ -9,6 +9,7 @@ public class TopDownEnemyController : MonoBehaviour
     public event Action<EnemySO> OnAttackEvent;
 
     protected EnemyStatsHandler Stats { get; private set; }
+    protected CharacterMove characterStats;
 
     private float _timeSinceLastAttack = float.MaxValue;
     protected bool IsAttacking { get; set; }
@@ -16,6 +17,7 @@ public class TopDownEnemyController : MonoBehaviour
     protected virtual void Awake()
     {
         Stats = GetComponent<EnemyStatsHandler>();
+        characterStats = GetComponent<CharacterMove>();
     }
 
     protected virtual void Update()
@@ -52,7 +54,6 @@ public class TopDownEnemyController : MonoBehaviour
 
     public void CallAttackEvent(EnemySO enemySO)
     {
-        Debug.Log("CallAttackEvent");
         OnAttackEvent?.Invoke(enemySO);
     }
 }

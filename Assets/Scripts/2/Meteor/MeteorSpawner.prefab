@@ -48,4 +48,4 @@ MonoBehaviour:
   alertLinePrefab: {fileID: 9138788734654560457, guid: 738d4ce41cc09984ba3dd8bc130043b8, type: 3}
   meteoritePrefab: {fileID: 1720084518233061799, guid: 69ce13d0e26c32846affb2349ddda388, type: 3}
   minSpawnTime: 1
-  maxSpawnTime: 1
+  maxSpawnTime: 4

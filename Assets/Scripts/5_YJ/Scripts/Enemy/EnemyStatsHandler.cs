@@ -4,7 +4,7 @@ public class EnemyStatsHandler : MonoBehaviour
 {
     [SerializeField] private EnemyStats baseStats;
     public EnemyStats CurrentStats { get; private set; }
-
+     
     private void Awake()
     {
         UpdateStats();

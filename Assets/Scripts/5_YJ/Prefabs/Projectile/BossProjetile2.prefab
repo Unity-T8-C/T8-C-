@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3067122422752782489}
   m_Layer: 0
   m_Name: BossProjetile2
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

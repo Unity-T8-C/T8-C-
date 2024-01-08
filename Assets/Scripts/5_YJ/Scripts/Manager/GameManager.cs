@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
+    private ProjectileManager _projectileManager;
+
     public GameObject Player;
 
     public GameObject endPanel;
@@ -12,6 +14,8 @@ public class GameManager : MonoBehaviour
     float alive = 0f;
 
     private bool live;
+
+    private float initialTime;
 
     public static GameManager Instance
     {
@@ -38,12 +42,13 @@ public class GameManager : MonoBehaviour
         {
             _instance = this;
             DontDestroyOnLoad(this);
+
+            initialTime = Time.timeScale;
         }
         else
         {
             if (_instance != this) Destroy(this);
         }
-
         live = true;
     }
 
@@ -52,7 +57,7 @@ public class GameManager : MonoBehaviour
         if (live)
         {
             alive += Time.deltaTime;
-            timeText.text = alive.ToString("N2");
+            //timeText.text = alive.ToString("N2");
         }
     }
 
@@ -64,6 +69,8 @@ public class GameManager : MonoBehaviour
 
     public void retry()
     {
+        ResetGame();
+        _projectileManager.ResetProjectiles();
         SceneManager.LoadScene("MainScene");
     }
 
@@ -71,5 +78,21 @@ public class GameManager : MonoBehaviour
     {
         live = false;
         gameOver();
+    }
+
+    private void ResetGame()
+    {
+        Time.timeScale = initialTime;
+        alive = 0.0f;
+        live = true;
+        endPanel.SetActive(false);
+
+        if (Player != null)
+        {
+            if (!Player.activeSelf)
+            {
+                Player.SetActive(true);
+            }
+        }
     }
 }

@@ -37,11 +37,12 @@ public class BossEnemyAttackController : MonoBehaviour
         _rigidbody.velocity = _direction * _bossData.atkSpeed;
     }
 
-    public void BossInitializeAttack(Vector2 direction, BossEnemyData bossData, ProjectileManager projectileManager)
+    public void BossInitializeAttack(Vector2 direction, float speed, BossEnemyData bossData, ProjectileManager projectileManager)
     {
         _projectileManager = projectileManager;
         _bossData = bossData;
         _direction = direction;
+        _bossData.atkSpeed = speed;
 
         UpdateProjectilSprite();
         _currentDuration = 0;
@@ -62,7 +63,7 @@ public class BossEnemyAttackController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             DestroyProjectile();
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             GameManager.Instance.PlayerDie();
         }
     }
