@@ -46,6 +46,8 @@ public class BossEnemyController : EnemyController
         if(currentHP <= 0)
         {
             Destroy(gameObject);
+            Time.timeScale = 0.0f;
+            GameManager.Instance.PlayerWin();
         }
     }
 }
