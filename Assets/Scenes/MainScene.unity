@@ -4789,6 +4789,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3276744387552791544, guid: 3186e647a5d0f944e826c7068d0f5fe1, type: 3}
+      propertyPath: baseStats.maxHp
+      value: 2500
+      objectReference: {fileID: 0}
     - target: {fileID: 7050296873358338665, guid: 3186e647a5d0f944e826c7068d0f5fe1, type: 3}
       propertyPath: m_Name
       value: Boss_Enemy
@@ -9437,6 +9441,10 @@ PrefabInstance:
     - target: {fileID: 9166416094753116105, guid: 8d2527f5a4caee9499a0903602b197c9, type: 3}
       propertyPath: m_Name
       value: SpawnManagerGroup
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166416094753116105, guid: 8d2527f5a4caee9499a0903602b197c9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
