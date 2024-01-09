@@ -71,14 +71,14 @@ public class BossEnemyShooting : MonoBehaviour
             CreateProjectile(bossData, angle);
             Debug.Log("OnAttack");
 
-            if (currentHP <= 700 && currentHP > 500)
+            if (currentHP <= 2000 && currentHP > 1500)
             {
                 bossData.atkDelay = 3.0f;
                 bossData.atkSpeed = 5.0f;
                 numberOfProjectilesPerShot = 2;
                 CreateProjectile(bossData, angle);
             }
-            else if (currentHP <= 500 && currentHP > 300)
+            else if (currentHP <= 1500 && currentHP > 1000)
             {
                 bossData.atkDelay = 2.0f;
                 bossData.atkSpeed = 7.0f;
@@ -86,7 +86,7 @@ public class BossEnemyShooting : MonoBehaviour
                 numberOfProjectilesPerShot = 4;
                 CreateProjectile(bossData, angle);
             }
-            else if(currentHP <= 300)
+            else if(currentHP <= 1000)
             {
                 bossData.atkDelay = 0.5f;
                 bossData.atkSpeed = 2.5f;
@@ -96,7 +96,7 @@ public class BossEnemyShooting : MonoBehaviour
             }
         }
 
-        if (currentHP <= 250 && laserDelayCheck)
+        if (currentHP <= 750 && laserDelayCheck)
         {
             StartCoroutine("LaserAttack");
         }
@@ -109,20 +109,20 @@ public class BossEnemyShooting : MonoBehaviour
         _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
                                        Rotate(_aimDirection, angle), bossData);
 
-        if (currentHP <= 500)
+        if (currentHP <= 3000)
         {
             _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
         }
 
-        if (currentHP <= 300 && spawnDelay)
+        if (currentHP <= 2000 && spawnDelay)
         {
             _bossData = bossData;
             Invoke("SpawnEnemy", 5.0f);
             spawnDelay = false;
         }
 
-        if (currentHP <= 100)
+        if (currentHP <= 1000)
         {
             _projectileManager.BossEnemyAttacking(3, projectileAttackPosLevel3.position,
                                        Rotate(_aimDirection, angle), bossData);
