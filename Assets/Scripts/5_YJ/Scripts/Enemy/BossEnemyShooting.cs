@@ -71,14 +71,14 @@ public class BossEnemyShooting : MonoBehaviour
             CreateProjectile(bossData, angle);
             Debug.Log("OnAttack");
 
-            if (currentHP <= 2000 && currentHP > 1500)
+            if (currentHP <= 5000 && currentHP > 3000)
             {
                 bossData.atkDelay = 3.0f;
                 bossData.atkSpeed = 5.0f;
                 numberOfProjectilesPerShot = 2;
                 CreateProjectile(bossData, angle);
             }
-            else if (currentHP <= 1500 && currentHP > 1000)
+            else if (currentHP <= 3000 && currentHP > 1500)
             {
                 bossData.atkDelay = 2.0f;
                 bossData.atkSpeed = 7.0f;
@@ -109,13 +109,13 @@ public class BossEnemyShooting : MonoBehaviour
         _projectileManager.BossEnemyAttacking(1, projectileAttackPosLevel1.position,
                                        Rotate(_aimDirection, angle), bossData);
 
-        if (currentHP <= 3000)
+        if (currentHP <= 5000)
         {
             _projectileManager.BossEnemyAttacking(2, projectileAttackPosLevel2.position,
                                        Rotate(_aimDirection, angle), bossData);
         }
 
-        if (currentHP <= 2000 && spawnDelay)
+        if (currentHP <= 3000 && spawnDelay)
         {
             _bossData = bossData;
             Invoke("SpawnEnemy", 5.0f);

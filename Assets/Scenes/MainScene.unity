@@ -4791,7 +4791,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3276744387552791544, guid: 3186e647a5d0f944e826c7068d0f5fe1, type: 3}
       propertyPath: baseStats.maxHp
-      value: 3000
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 7050296873358338665, guid: 3186e647a5d0f944e826c7068d0f5fe1, type: 3}
       propertyPath: m_Name
